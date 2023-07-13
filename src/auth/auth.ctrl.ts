@@ -6,20 +6,20 @@ import { UserInterface, SuperAdminInterface, StatusResponseInterface } from '../
 import { RequestHandler } from '../handlers';
 import { WhereOptions, FindOptions } from 'sequelize';
 
-export default class AuthController {
+class AuthController {
     public static async forgotPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { email } = req.body;
             const trimEmail: string = allLowerCaseLetters(email);
             const whereUser: WhereOptions<UserInterface> = {
                 email: trimEmail
-            }
+            };
             const dataUser: FindOptions<UserInterface> = {
                 attributes: ['id', 'name', 'email'],
                 where: whereUser
             };
             const getUser: UserInterface = await UsersService.findOne(dataUser);
-            const getToken: string = jwtGenerated({ userID: getUser.id }, TOKEN_EXPIRATION.TEN_MINUTES);
+            const getToken: string = jwtGenerated({ userID: getUser.id }, TOKEN_EXPIRATION.FIFTEEN_MINUTES);
             await emailForgotPassword(getUser, getToken);
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK
@@ -36,7 +36,7 @@ export default class AuthController {
             const trimEmail: string = allLowerCaseLetters(email);
             const whereUser: WhereOptions<UserInterface> = {
                 email: trimEmail
-            }
+            };
             const dataUser: FindOptions<UserInterface> = {
                 attributes: ['id', 'name', 'email', 'password'],
                 where: whereUser
@@ -45,14 +45,14 @@ export default class AuthController {
             await comparePassword(password, getUser.password);
             const whereSuperAdmin: WhereOptions<SuperAdminInterface> = {
                 userID: getUser.id
-            }
+            };
             const dataSuperAdmin: FindOptions<SuperAdminInterface> = {
                 attributes: ['id'],
                 where: whereSuperAdmin
             };
             await SuperAdminsService.findOne(dataSuperAdmin);
-            const getToken: string = jwtGenerated({ userID: getUser.id }, TOKEN_EXPIRATION.ONE_HOUR);
-            const getRefreshToken: string = jwtGenerated({ userID: getUser.id, type: 'refresh' }, TOKEN_EXPIRATION.TWO_HOURS);
+            const getToken: string = jwtGenerated({ userID: getUser.id }, TOKEN_EXPIRATION.TWENTY_DAYS);
+            const getRefreshToken: string = jwtGenerated({ userID: getUser.id, type: 'refresh' }, TOKEN_EXPIRATION.THIRTY_DAYS);
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK,
                 token: getToken,
@@ -66,13 +66,13 @@ export default class AuthController {
 
     public static async updatePassword(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { password, dataToken } = req.body;
+            const { password, userID } = req.body;
             const setPassword: string = await convertPassword(password);
             const data: Partial<UserInterface> = {
                 password: setPassword
             };
             const where: WhereOptions<UserInterface> = {
-                id: dataToken
+                id: userID
             };
             await UsersService.update(data, where);
             const dataSend: StatusResponseInterface = {
@@ -84,3 +84,5 @@ export default class AuthController {
         }
     }
 };
+
+export default AuthController;

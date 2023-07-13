@@ -1,0 +1,28 @@
+doctype
+html(lang='es')
+    head
+        meta(charset='utf-8')      
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel='stylesheet' href='../bootstrap-5.3.0/css/bootstrap.min.css')
+        link(rel='stylesheet' href='../toastify/toastify.css')
+        link(rel='stylesheet' href='../stylesheets/index.css')
+        link(rel='icon' href='../images/logo.jpeg')
+        title Iniciar sesión
+    body.bg-green
+        .myForm.bg-white
+            br
+            .mb-3
+                label.form-label.text-secondary.font-15(for='email') Correo electrónico
+                input.form-control.input-style.text-secondary.border-0#email(type='text' placeholder='Correo electrónico' autocomplete='off')
+            .mb-1
+                label.form-label.text-secondary.font-15(for='password') Contraseña
+                input.form-control.input-style.text-secondary.border-0#password(type='password' placeholder='Contraseña' autocomplete='off')
+            .mb-4.text-end
+                span.cursor-pointer.font-14.text-body.fw-bold(onclick='forgotPassword()') Olvidé mi contraseña
+            .mb-4.text-center
+                button.btn.text-white.btn-iniciar-sesion.font-15#btnLogin(onclick='login()') Iniciar sesión
+        script(src='../jquery/code.jquery.com_jquery-3.7.0.slim.min.js')
+        script(src='../axios/axios.min.js')
+        script(src='../javascripts/generals.js')
+        script(src='../toastify/toastify.js')
+        script(src='../javascripts/index.js')

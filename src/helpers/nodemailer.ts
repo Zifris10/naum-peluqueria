@@ -3,18 +3,19 @@ import { convertPugFile } from './';
 import { MailOptionsInterface, UserInterface } from '../interfaces';
 
 const {
-    SES_HOST,
-    SES_PORT,
-    SES_USER,
-    SES_PASSWORD,
-    SES_FROM
+    AWS_SES_HOST,
+    AWS_SES_PORT,
+    AWS_SES_USER,
+    AWS_SES_PASSWORD,
+    AWS_SES_FROM,
+    LOCALHOST
 } = process.env;
 
-const sesHost = SES_HOST as string;
-const sesPort = SES_PORT as string;
-const sesUser = SES_USER as string;
-const sesPassword = SES_PASSWORD as string;
-const sesFrom = SES_FROM as string;
+const sesHost = AWS_SES_HOST as string;
+const sesPort = AWS_SES_PORT as string;
+const sesUser = AWS_SES_USER as string;
+const sesPassword = AWS_SES_PASSWORD as string;
+const sesFrom = AWS_SES_FROM as string;
 
 const transporter = createTransport({
     host: sesHost,
@@ -38,5 +39,5 @@ export const emailForgotPassword = async (user: UserInterface, token: string): P
 };
 
 const sendMail = async (mailOptions: MailOptionsInterface): Promise<void> => {
-    await transporter.sendMail(mailOptions);
+    if(!LOCALHOST) await transporter.sendMail(mailOptions);
 };

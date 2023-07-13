@@ -1,0 +1,53 @@
+.myForm {
+    border-radius: 8px;
+    min-width: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 30px 0 30px;
+}
+@media (max-width: 500px) {
+    .myForm {
+        min-width: 90%;
+    }
+}
+.bg-green {
+    background-color: rgb(72, 105, 40) !important;
+}
+.font-50 {
+    font-size: 50px;
+}
+.font-26 {
+    font-size: 26px;
+}
+.font-34 {
+    font-size: 34px;
+}
+.font-15 {
+    font-size: 15px;
+}
+.font-14 {
+    font-size: 14px;
+}
+.input-style {
+    height: 50px;
+    border-radius: 5px;
+    background-color: #F8F8F8;
+}
+.btn-iniciar-sesion {
+    height: 50px !important;
+    width: 100%;
+    border-radius: 5px;
+    background-color: black !important;
+    box-shadow: 0 10px 20px 0 rgba(232,146,119,0.2);
+}
+.btn-iniciar-sesion:hover {
+    background-color: black !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.1rem rgba(41, 96, 75, 1);
+}

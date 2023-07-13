@@ -200,26 +200,17 @@ body {
     margin: auto !important;
     width: 600px !important;
 }
-.bg-blue-10 {
-    background-color: #ECF3FE !important;
+.bg-verde {
+    background-color: rgb(72, 105, 40) !important;
 }
-.bg-primary {
-    background-color: #4687F9 !important;
-}
-.color-primary {
-    color: #4687F9 !important;
+.bg-black {
+    background-color: black !important;
 }
 .color-black {
     color: #1E1D2A !important;
 }
-.color-variant {
-    color: #62616A !important;
-}
 .color-white {
     color: #FFFFFF !important;
-}
-.font-32 {
-    font-size: 32px !important;
 }
 .font-22 {
     font-size: 22px !important;
@@ -227,21 +218,21 @@ body {
 .font-16 {
     font-size: 16px !important;
 }
-.font-12 {
-    font-size: 12px !important;
+.font-14 {
+    font-size: 14px !important;
 }
 .radius-30 {
     border-radius: 30px !important;
 }
-.verification-code {
-    width: 191px !important;
-    height: 80px !important;
-    padding: 24px 48px !important;
+.btn-enalce {
+    text-decoration: none !important;
+    display: inline-block !important;
+    border: none !important;
+    border-radius: 11px !important;
+    width: 300px !important;
+    height: 40px !important;
 }
-.btn {
-    padding: 16px 40px;
-    height: 70px !important;
-    border-radius: 15px;
-    text-decoration: none;
-    border: none;
+.header {
+    height: 100px !important;
+    width: '100%' !important;
 }

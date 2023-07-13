@@ -3,7 +3,7 @@ import { FindOptions } from 'sequelize';
 import { SuperAdminInterface } from '../interfaces';
 import { SuperAdminsModel } from '../models';
 
-class SuperAdminsService {    
+class SuperAdminsService {
     public static async findOne(data: FindOptions<SuperAdminInterface>): Promise<void> {
         const findOne = await SuperAdminsModel.findOne(data);
         if(!findOne) {

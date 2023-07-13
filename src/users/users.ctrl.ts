@@ -5,7 +5,7 @@ import { RequestHandler } from '../handlers';
 import { trimStrings, firstLetterUpperCase, allLowerCaseLetters, STATUS_CODES } from '../helpers';
 import { UserInterface, StatusResponseInterface } from '../interfaces';
 
-export default class UsersController {
+class UsersController {
     public static async updateProfile(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { name, email, dataToken } = req.body;
@@ -41,3 +41,5 @@ export default class UsersController {
         }
     }
 };
+
+export default UsersController;
