@@ -11,6 +11,11 @@ class ViewsController {
         const html: string = convertPugFile('login', req.body);
         res.status(STATUS_CODES.OK).send(html);
     }
+
+    public static async dashboard(_req: Request, res: Response): Promise<void> {
+        const html: string = convertPugFile('dashboard/index', {});
+        res.status(STATUS_CODES.OK).send(html);
+    }
 };
 
 export default ViewsController;

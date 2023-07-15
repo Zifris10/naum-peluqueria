@@ -1,0 +1,54 @@
+doctype
+html(lang='es')
+    head
+        meta(charset='utf-8')      
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css')
+        link(rel='stylesheet' href='../bootstrap-5.3.0/css/bootstrap.min.css')
+        link(rel='stylesheet' href='../toastify/toastify.css')
+        link(rel='stylesheet' href='../stylesheets/style.css')
+        link(rel='icon' href='../images/logo.jpeg')
+        title Calendario
+    body
+        nav.navbar.navbar-expand-lg.bg-green.style-navbar.shadow
+            .container-fluid
+                a.navbar-brand(data-bs-toggle='offcanvas' href='#offCanvasSidenav')
+                    i.fa-solid.fa-bars.font-20.text-white
+                .d-flex
+                    span.font-16.text-white.pt-2#navbarName Eduardo Martínez
+                    img.ms-4.img-fluid.rounded(src='../images/logo.jpeg' width=40)
+        .offcanvas.offcanvas-start.size-off-canvas#offCanvasSidenav(tabindex='-1')
+            .offcanvas-body.bg-green
+                .text-center.my-4
+                    img(src='../images/logo.jpeg' width=180)
+                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#calendar' data-api='/web/administrators/render')
+                    .col-3.text-center
+                        i.fa-solid.fa-users-gear.font-19
+                    .col-9
+                        span.font-17 Citas
+                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#inventario' data-api='/web/users/render')
+                    .col-3.text-center
+                        i.fa-solid.fa-users.font-19
+                    .col-9
+                        span.font-17 Inventario
+                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#proveedores' data-api='/web/providers/render')
+                    .col-3.text-center
+                        i.fa-solid.fa-user-plus.font-19
+                    .col-9
+                        span.font-17 Historial de citas
+                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#categorias' data-api='/web/categories-products/render')
+                    .col-3.text-center
+                        i.fa-solid.fa-list.font-19
+                    .col-9
+                        span.font-17 Historial de ventas
+                .row.cursor-pointer.py-2.mb-1.menu-links(onclick='cerrarSesion()')
+                    .col-3.text-center
+                        i.fa-solid.fa-power-off.font-19
+                    .col-9
+                        span.font-17 Cerrar Sesión
+        script(src='../jquery/code.jquery.com_jquery-3.7.0.slim.min.js')
+        script(src='../bootstrap-5.3.0/js/bootstrap.bundle.min.js')
+        script(src='../axios/axios.min.js')
+        script(src='../javascripts/generals.js')
+        script(src='../toastify/toastify.js')
+        script(src='../javascripts/index.js')

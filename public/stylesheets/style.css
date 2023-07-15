@@ -1,0 +1,15 @@
+.style-navbar {
+    height: 70px !important;
+}
+.bg-green {
+    background-color: rgb(72, 105, 40) !important;
+}
+.font-20 {
+    font-size: 20px;
+}
+.font-16 {
+    font-size: 16px;
+}
+.size-off-canvas {
+    width: 280px !important;
+}

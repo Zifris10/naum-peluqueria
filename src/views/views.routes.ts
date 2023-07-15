@@ -6,6 +6,7 @@ const viewsRoute: Router = Router();
 
 viewsRoute
     .get('/recuperar-contrasena', jwtVerifyExpireForgotPassword, ViewsController.updatePassword)
-    .get('/login', ViewsController.login);
+    .get('/login', ViewsController.login)
+    .get('/dashboard', ViewsController.dashboard);
 
 export default viewsRoute;

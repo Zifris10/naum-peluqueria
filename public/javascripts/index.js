@@ -45,15 +45,14 @@ const login = async () => {
     };
     const axiosRequest = await requestAxios(false, 'POST', '/auth/login', data);
     if(axiosRequest.statusCode === 200) {
-        console.log(axiosRequest);
-        //localStorage.setItem('naumToken', axiosRequest.token);
-        //localStorage.setItem('naumRefreshToken', axiosRequest.refreshToken);
-        //location.href = '/dashboard#administradores';
+        localStorage.setItem('naumToken', axiosRequest.token);
+        localStorage.setItem('naumRefreshToken', axiosRequest.refreshToken);
+        location.href = '/views/dashboard#calendar';
     } else {
         showToast(axiosRequest.message, 'error');
         btn.html('Iniciar sesión').prop('disabled', false);
     }
-}
+};
 
 $(document).on('keypress', e => {
     if(e.which == 13) {
