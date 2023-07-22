@@ -22,7 +22,7 @@ const showToast = (text, type) => {
     }).showToast();
 };
 
-const requestAxios = async (needRefresh, method, url, data, params = {}) => {
+const requestAxios = async (needRefresh, method, url, data) => {
     try {
         if(needRefresh) {
             const dataRefresh = {
@@ -44,8 +44,7 @@ const requestAxios = async (needRefresh, method, url, data, params = {}) => {
                 'Authorization': localStorage.getItem('naumToken'),
                 'content-type': 'application/json'
             },
-            data,
-            params
+            data
         };
         const request = await axios(dataSend);
         return request.data

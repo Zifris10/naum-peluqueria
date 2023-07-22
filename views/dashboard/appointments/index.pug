@@ -3,24 +3,46 @@
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
             .modal-header
-                h5.modal-title.color-green.fw-bold Agregar cita
+                h5.modal-title.color-blue.fw-bold Agregar cita
             .modal-body
                 .mb-3
-                    label.form-label.color-green.fw-bold(for='dateAppointment') Fecha
-                    input.form-control.input-style.text-secondary.border-0#dateAppointment(type='date' placeholder='')
+                    label.form-label.color-green.fw-bold(for='dateAppointment') Fecha de cita
+                    input.form-control.input-style.new-appointment#dateAppointment(type='date' placeholder='')
                 .row
-                    .col-6.mb-3
+                    .col-6.mb-4
                         label.form-label.color-green.fw-bold(for='startTimeAppointment') Hora de inicio
-                        input.form-control.input-style.text-secondary.border-0#startTimeAppointment(type='time' placeholder='')
-                    .col-6.mb-3
+                        input.form-control.input-style.new-appointment#startTimeAppointment(type='time' placeholder='')
+                    .col-6.mb-4
                         label.form-label.color-green.fw-bold(for='endTimeAppointment') Hora de inicio
-                        input.form-control.input-style.text-secondary.border-0#endTimeAppointment(type='time' placeholder='')
-                .mb-3
-                    label.form-label.color-green.fw-bold(for='nameAppointment') Nombre
-                    input.form-control.input-style.text-secondary.border-0#nameAppointment(type='text' placeholder='Nombre...' autocomplete='off')
+                        input.form-control.input-style.new-appointment#endTimeAppointment(type='time' placeholder='')
+                .mb-4
+                    input.form-control.input-style.new-appointment#nameAppointment(type='text' placeholder='Nombre...' autocomplete='off')
                 .mb-5
-                    label.form-label.color-green.fw-bold(for='phoneAppointment') Teléfono (opcional)
-                    input.form-control.input-style.text-secondary.border-0#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
+                    input.form-control.input-style.new-appointment#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
                 .text-center
-                    button.btn.btn-secondary.size-input-button.px-5.me-3(onclick='limpiarModalAdministrador()') Cancelar
-                    button.btn.bg-green.text-white.size-input-button.px-5#btnAddAppoinment(onclick='agregarAdministrador()') Agregar
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddAppointment()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddAppointment(onclick='addAppointment()') Agregar
+.modal.fade#modalDetailAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
+    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-header
+                h5.modal-title.color-blue.fw-bold Detalle de la cita
+                button.btn-close.color-blue(data-bs-dismiss='modal')
+            //-.modal-body
+                .mb-3
+                    label.form-label.color-green.fw-bold(for='dateAppointment') Fecha de cita
+                    input.form-control.input-style.new-appointment#dateAppointment(type='date' placeholder='')
+                .row
+                    .col-6.mb-4
+                        label.form-label.color-green.fw-bold(for='startTimeAppointment') Hora de inicio
+                        input.form-control.input-style.new-appointment#startTimeAppointment(type='time' placeholder='')
+                    .col-6.mb-4
+                        label.form-label.color-green.fw-bold(for='endTimeAppointment') Hora de inicio
+                        input.form-control.input-style.new-appointment#endTimeAppointment(type='time' placeholder='')
+                .mb-4
+                    input.form-control.input-style.new-appointment#nameAppointment(type='text' placeholder='Nombre...' autocomplete='off')
+                .mb-5
+                    input.form-control.input-style.new-appointment#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
+                //-.text-center
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddAppointment()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddAppointment(onclick='addAppointment()') Agregar

@@ -99,9 +99,9 @@ export const schemaCreateAppointment: ObjectSchema = Joi.object({
         'string.empty': `Oops, lo sentimos pero la hora de fin no puede estar vacío.`,
         'any.required': `Oops, lo sentimos pero la hora de fin es requerido.`
     }),
-    name: string.min(5).max(50).messages({
+    name: string.min(5).max(100).messages({
         'string.min': `Oops, lo sentimos pero el nombre debe tener mínimo 5 caracteres.`,
-        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 50 caracteres.`,
+        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 100 caracteres.`,
         'string.base': `Oops, lo sentimos pero el nombre debe ser una cadena de texto.`,
         'string.empty': `Oops, lo sentimos pero el nombre no puede estar vacío.`,
         'any.required': `Oops, lo sentimos pero el nombre es requerido.`
