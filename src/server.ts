@@ -9,7 +9,7 @@ import viewsRoute from './views/views.routes';
 import { errorResponse } from './handlers';
 
 const app: Express = express();
-const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const port: number = process.env.PORT ? parseInt(process.env.PORT) : 4000;
 
 app.set('views', '../views');
 app.set('view engine', 'pug');

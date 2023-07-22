@@ -15,13 +15,13 @@ html(lang='es')
                 a.navbar-brand(data-bs-toggle='offcanvas' href='#offCanvasSidenav')
                     i.fa-solid.fa-bars.font-20.text-white
                 .d-flex
-                    span.font-16.text-white.pt-2#navbarName Eduardo Martínez
+                    span.font-16.text-white.pt-2#navbarName
                     img.ms-4.img-fluid.rounded(src='../images/logo.jpeg' width=40)
         .offcanvas.offcanvas-start.size-off-canvas#offCanvasSidenav(tabindex='-1')
             .offcanvas-body.bg-green
                 .text-center.my-4
                     img(src='../images/logo.jpeg' width=180)
-                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#calendar' data-api='/web/administrators/render')
+                .row.cursor-pointer.py-2.mb-1.menu-links(data-bs-dismiss='offcanvas' onclick='location.hash = this.dataset.href' data-href='#calendar' data-api='/appointments/')
                     .col-3.text-center
                         i.fa-solid.fa-users-gear.font-19
                     .col-9
@@ -41,14 +41,18 @@ html(lang='es')
                         i.fa-solid.fa-list.font-19
                     .col-9
                         span.font-17 Historial de ventas
-                .row.cursor-pointer.py-2.mb-1.menu-links(onclick='cerrarSesion()')
+                .row.cursor-pointer.py-2.mb-1.menu-links(onclick='logout()')
                     .col-3.text-center
                         i.fa-solid.fa-power-off.font-19
                     .col-9
                         span.font-17 Cerrar Sesión
+        #contentDiv.container.my-4
+            .text-center
+                .spinner-border.color-green(style='width: 6rem; height: 6rem;' role='status')
         script(src='../jquery/code.jquery.com_jquery-3.7.0.slim.min.js')
+        script(src='../fullcalendar-6.1.8/index.global.js')
         script(src='../bootstrap-5.3.0/js/bootstrap.bundle.min.js')
         script(src='../axios/axios.min.js')
         script(src='../javascripts/generals.js')
         script(src='../toastify/toastify.js')
-        script(src='../javascripts/index.js')
+        script(src='../javascripts/dashboard.js')

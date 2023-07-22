@@ -14,3 +14,19 @@ export interface SuperAdminInterface {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface AppointmentsInterface {
+    id: string;
+    completed: boolean;
+    startDate: Date;
+    endDate: Date;
+    name: string;
+    phone: string;
+    price: number;
+    backgroundColor: string;
+    createdBy: string;
+    deleted: boolean;
+    deletedBy: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

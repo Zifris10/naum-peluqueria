@@ -5,4 +5,5 @@ export interface StatusResponseInterface {
     data?: any;
     token?: string;
     refreshToken?: string;
+    html?: string;
 }

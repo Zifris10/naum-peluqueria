@@ -200,8 +200,11 @@ body {
     margin: auto !important;
     width: 600px !important;
 }
-.bg-verde {
-    background-color: rgb(72, 105, 40) !important;
+.bg-blue {
+    background-color: #4687F9 !important;
+}
+.bg-white {
+    background-color: white !important;
 }
 .bg-black {
     background-color: black !important;
@@ -221,16 +224,16 @@ body {
 .font-14 {
     font-size: 14px !important;
 }
-.radius-30 {
-    border-radius: 30px !important;
+.radius-40 {
+    border-radius: 40px !important;
 }
 .btn-enalce {
+    width: 300px !important;
+    height: 40px !important;
+    border-radius: 15px !important;
     text-decoration: none !important;
     display: inline-block !important;
     border: none !important;
-    border-radius: 11px !important;
-    width: 300px !important;
-    height: 40px !important;
 }
 .header {
     height: 100px !important;

@@ -1,0 +1,26 @@
+#renderCalendar
+.modal.fade#modalAddAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
+    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-header
+                h5.modal-title.color-green.fw-bold Agregar cita
+            .modal-body
+                .mb-3
+                    label.form-label.color-green.fw-bold(for='dateAppointment') Fecha
+                    input.form-control.input-style.text-secondary.border-0#dateAppointment(type='date' placeholder='')
+                .row
+                    .col-6.mb-3
+                        label.form-label.color-green.fw-bold(for='startTimeAppointment') Hora de inicio
+                        input.form-control.input-style.text-secondary.border-0#startTimeAppointment(type='time' placeholder='')
+                    .col-6.mb-3
+                        label.form-label.color-green.fw-bold(for='endTimeAppointment') Hora de inicio
+                        input.form-control.input-style.text-secondary.border-0#endTimeAppointment(type='time' placeholder='')
+                .mb-3
+                    label.form-label.color-green.fw-bold(for='nameAppointment') Nombre
+                    input.form-control.input-style.text-secondary.border-0#nameAppointment(type='text' placeholder='Nombre...' autocomplete='off')
+                .mb-5
+                    label.form-label.color-green.fw-bold(for='phoneAppointment') Teléfono (opcional)
+                    input.form-control.input-style.text-secondary.border-0#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
+                .text-center
+                    button.btn.btn-secondary.size-input-button.px-5.me-3(onclick='limpiarModalAdministrador()') Cancelar
+                    button.btn.bg-green.text-white.size-input-button.px-5#btnAddAppoinment(onclick='agregarAdministrador()') Agregar

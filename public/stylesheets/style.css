@@ -4,6 +4,9 @@
 .bg-green {
     background-color: rgb(72, 105, 40) !important;
 }
+.color-green {
+    color: rgb(72, 105, 40) !important;
+}
 .font-20 {
     font-size: 20px;
 }
@@ -12,4 +15,15 @@
 }
 .size-off-canvas {
     width: 280px !important;
+}
+.input-style {
+    height: 50px;
+    border-radius: 5px;
+    background-color: #F8F8F8;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.1rem rgba(41, 96, 75, 1);
+}
+.size-input-button {
+    height: 45px !important;
 }
