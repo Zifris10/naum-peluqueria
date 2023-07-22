@@ -11,14 +11,6 @@ class AppointmentsService {
         }
     }
 
-    public static async findOne(data: FindOptions<AppointmentsInterface>): Promise<AppointmentsInterface> {
-        const findOne = await AppointmentsModel.findOne(data);
-        if(!findOne) {
-            throw notFound('Oops, lo sentimos pero no hemos logrado encontrar la cita.');
-        }
-        return findOne.dataValues;
-    }
-
     public static async create(data: any): Promise<AppointmentsInterface> {
         const create = await AppointmentsModel.create(data);
         return create.dataValues;

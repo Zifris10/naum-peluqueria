@@ -11,10 +11,6 @@ appointmentsRoute
         jwtVerifyTokenSuperAdmin
     ], AppointmentsController.delete)
     .get('/', jwtVerifyTokenSuperAdmin, AppointmentsController.list)
-    .get('/:appointmentID', [
-        ValidatorHandler.validate(schemaAppointmentID, QUERY_PARAMS.PARAMS),
-        jwtVerifyTokenSuperAdmin
-    ], AppointmentsController.findById)
     .post('/', [
         ValidatorHandler.validate(schemaCreateAppointment, QUERY_PARAMS.BODY),
         jwtVerifyTokenSuperAdmin

@@ -65,27 +65,6 @@ class AppointmentsController {
         }
     }
 
-    public static async findById(req: Request, res: Response, next: NextFunction): Promise<void> {
-        try {
-            const { appointmentID } = req.params;
-            const data: FindOptions<AppointmentsInterface> = {
-                attributes: ['id', 'name', 'phone', 'startDate', 'endDate'],
-                where: {
-                    id: appointmentID,
-                    deleted: false
-                }
-            };
-            const getOne: AppointmentsInterface = await AppointmentsService.findOne(data);
-            const dataSend: StatusResponseInterface = {
-                statusCode: STATUS_CODES.OK,
-                data: getOne
-            };
-            RequestHandler.handlerResponse(res, dataSend);
-        } catch (error) {
-            next(error);
-        }
-    }
-
     public static async list(_req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const currentDate: Date = dayjsGetCurrentDate();
