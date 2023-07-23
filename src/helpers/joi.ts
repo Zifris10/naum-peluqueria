@@ -4,9 +4,7 @@ import { InventoryInterface } from '../interfaces';
 const phoneNumber: Joi.StringSchema<string> = Joi.string().regex(/^[0-9]{10}$/);
 const uuid: Joi.StringSchema<string> = Joi.string().uuid().required();
 const number: Joi.NumberSchema<number> = Joi.number().integer().required();
-const alpha: Joi.StringSchema<string> = Joi.string().regex(/^[A-Za-záéíóúÁÉÍÓÚ\s]*$/).required();
 const string: Joi.StringSchema<string> = Joi.string().required();
-//const alphanumeric: Joi.StringSchema<string> = Joi.string().regex(/^[A-Za-z0-9áéíóúÁÉÍÓÚ\s]*$/).required();
 const email: Joi.StringSchema<string> = Joi.string().email().required();
 const password: Joi.StringSchema<string> = Joi.string().min(8).max(12).regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,12}$/).required();
 
@@ -51,24 +49,6 @@ export const schemaAuthUpdatePassword: ObjectSchema = Joi.object({
         'string.guid': `Oops, lo sentimos pero el id del usuario debe ser de tipo uuid.`,
         'string.base': `Oops, lo sentimos pero el id del usuario debe ser una cadena de texto.`,
         'any.required': `Oops, lo sentimos pero el id del usuario es requerido.`
-    })
-});
-
-// USERS
-export const schemaUsersUpdateProfile: ObjectSchema = Joi.object({
-    name: alpha.min(5).max(50).messages({
-        'string.min': `Oops, lo sentimos pero el nombre debe tener mínimo 5 caracteres.`,
-        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 50 caracteres.`,
-        'string.base': `Oops, lo sentimos pero el nombre debe ser una cadena de texto.`,
-        'string.empty': `Oops, lo sentimos pero el nombre no puede estar vacío.`,
-        'string.pattern.base': `Oops, lo sentimos pero el nombre solo permite letras.`,
-        'any.required': `Oops, lo sentimos pero el nombre es requerido.`
-    }),
-    email: email.messages({
-        'string.email': `Oops, lo sentimos pero el email no tiene un formato válido.`,
-        'string.base': `Oops, lo sentimos pero el email no tiene un formato válido.`,
-        'string.empty': `Oops, lo sentimos pero el email no puede estar vacío.`,
-        'any.required': `Oops, lo sentimos pero el email es requerido.`
     })
 });
 
