@@ -35,7 +35,8 @@ export enum QUERY_PARAMS {
 export enum TESTING {
     EMAIL = 'eduardom362@gmail.com',
     PASSWORD = 'Hola123$',
-    HOST = 'http://localhost:3000/api/v1'
+    HOST = 'http://localhost:3000/api/v1',
+    UUID = '94ef70d5-d501-4139-8a62-d0cfea091bd8'
 };
 
 export enum STATUS_CODES_NAME {
