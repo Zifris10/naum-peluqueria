@@ -5,7 +5,8 @@ export enum SCHEMAS {
 export enum TABLES {
     APPOINTMENTS = 'appointments',
     USERS = 'users',
-    SUPER_ADMINS = 'superAdmins'
+    SUPER_ADMINS = 'superAdmins',
+    INVENTORY = 'inventory'
 };
 
 export enum TOKEN_EXPIRATION {
@@ -34,7 +35,7 @@ export enum QUERY_PARAMS {
 export enum TESTING {
     EMAIL = 'eduardom362@gmail.com',
     PASSWORD = 'Hola123$',
-    HOST = 'http://localhost:4000/api/v1'
+    HOST = 'http://localhost:3000/api/v1'
 };
 
 export enum STATUS_CODES_NAME {

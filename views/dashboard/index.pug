@@ -19,7 +19,7 @@ html(lang='es')
                         li
                             a.dropdown-item(href='#calendar') Citas
                             a.dropdown-item(href='#calendar') Inventario
-                            a.dropdown-item(href='#calendar') Cerrar sesión
+                            a.dropdown-item.cursor-pointer(onclick='logout()') Cerrar sesión
         #contentDiv.container.my-4
             .text-center
                 .spinner-border.color-blue(style='width: 6rem; height: 6rem;' role='status')

@@ -151,5 +151,7 @@ describe('GET /appointments/', () => {
             backgroundColor: expect.any(String),
             phone: expect.any(String)
         });
+        expect(body.html).toBeDefined();
+        expect(body.html).toEqual(expect.any(String));
     });
 });

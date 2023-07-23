@@ -30,3 +30,14 @@ export interface AppointmentsInterface {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface InventoryInterface {
+    id: string;
+    name: string;
+    price: number;
+    createdBy: string;
+    deleted: boolean;
+    deletedBy: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

@@ -82,7 +82,8 @@ class AppointmentsController {
                 order: [
                     ['startDate', 'ASC']
                 ],
-                where
+                where,
+                raw: true
             };
             const getData = await AppointmentsService.findAll(data);
             const pug: string = convertPugFile('dashboard/appointments/index', {});

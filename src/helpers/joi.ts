@@ -1,7 +1,9 @@
 import Joi, { ObjectSchema } from 'joi';
+import { InventoryInterface } from '../interfaces';
 
 const phoneNumber: Joi.StringSchema<string> = Joi.string().regex(/^[0-9]{10}$/);
 const uuid: Joi.StringSchema<string> = Joi.string().uuid().required();
+const number: Joi.NumberSchema<number> = Joi.number().integer().required();
 const alpha: Joi.StringSchema<string> = Joi.string().regex(/^[A-Za-záéíóúÁÉÍÓÚ\s]*$/).required();
 const string: Joi.StringSchema<string> = Joi.string().required();
 //const alphanumeric: Joi.StringSchema<string> = Joi.string().regex(/^[A-Za-z0-9áéíóúÁÉÍÓÚ\s]*$/).required();
@@ -111,5 +113,28 @@ export const schemaCreateAppointment: ObjectSchema = Joi.object({
         'any.only': `El teléfono debe ser una cadena de texto y solo contener números.`,
         'string.pattern.base': `El teléfono debe contener 10 dígitos.`,
         'any.required': `Oops, lo sentimos pero el teléfono es requerido.`
+    })
+});
+
+// INVENTORY
+export const schemaInventoryID: ObjectSchema = Joi.object({
+    inventoryID: uuid.messages({
+        'string.guid': `Oops, lo sentimos pero el id del inventario debe ser de tipo uuid.`
+    })
+});
+
+export const schemaCreateInventory: ObjectSchema<InventoryInterface> = Joi.object({
+    name: string.min(5).max(100).messages({
+        'string.min': `Oops, lo sentimos pero el nombre debe tener mínimo 5 caracteres.`,
+        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 100 caracteres.`,
+        'string.base': `Oops, lo sentimos pero el nombre debe ser una cadena de texto.`,
+        'string.empty': `Oops, lo sentimos pero el nombre no puede estar vacío.`,
+        'any.required': `Oops, lo sentimos pero el nombre es requerido.`
+    }),
+    price: number.positive().allow(0).messages({
+        'number.positive': `Oops, lo sentimos pero el precio debe ser un número positivo.`,
+        'number.base': `Oops, lo sentimos pero el precio debe ser un número.`,
+        'number.integer': `Oops, lo sentimos pero el precio debe ser un número entero.`,
+        'any.required': `Oops, lo sentimos pero el precio es requerido.`
     })
 });
