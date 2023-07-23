@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { jwtVerifyTokenSuperAdmin, QUERY_PARAMS, schemaInventoryID, schemaCreateInventory } from '../helpers';
+import { jwtVerifyTokenSuperAdmin, QUERY_PARAMS, schemaInventoryID, schemaCreateInventory, schemaUpdateInventory } from '../helpers';
 import { ValidatorHandler } from '../handlers';
 import InventoryController from './inventory.ctrl';
 
@@ -14,6 +14,11 @@ inventoryRoute
     .post('/', [
         ValidatorHandler.validate(schemaCreateInventory, QUERY_PARAMS.BODY),
         jwtVerifyTokenSuperAdmin
-    ], InventoryController.create);
+    ], InventoryController.create)
+    .put('/:inventoryID', [
+        ValidatorHandler.validate(schemaInventoryID, QUERY_PARAMS.PARAMS),
+        ValidatorHandler.validate(schemaUpdateInventory, QUERY_PARAMS.BODY),
+        jwtVerifyTokenSuperAdmin
+    ], InventoryController.update);
 
 export default inventoryRoute;

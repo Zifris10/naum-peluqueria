@@ -1,6 +1,9 @@
 .style-navbar {
     height: 70px !important;
 }
+.bg-row {
+    background: #ECF3FE !important;
+}
 .bg-blue {
     background-color: #4687F9 !important;
 }
@@ -27,6 +30,15 @@
 .btn-cancel:hover {
     border: 1px solid #4687F9;
 }
+.btn-delete {
+    height: 60px !important;
+    width: 200px;
+    border-radius: 15px !important;
+    border: 1px solid #4687F9;
+}
+.btn-delete:hover {
+    border: 1px solid #4687F9;
+}
 .input-style {
     height: 60px;
     border-radius: 15px !important;
@@ -35,10 +47,22 @@
 .radius-40 {
     border-radius: 40px !important;
 }
+.radius-20 {
+    border-radius: 20px !important;
+}
 .form-control:focus {
     border: 2px solid #4687F9;
     box-shadow: none;
 }
 .font-16 {
     font-size: 16px;
+}
+.font-18 {
+    font-size: 18px;
+}
+.font-20 {
+    font-size: 20px;
+}
+.height-60 {
+    height: 60px !important;
 }

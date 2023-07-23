@@ -61,10 +61,31 @@ class InventoryController {
                 raw: true
             };
             const getData = await InventoryService.findAll(data);
-            const pug: string = convertPugFile('dashboard/appointments/index', getData);
+            const pug: string = convertPugFile('dashboard/inventory/index', { inventory: getData });
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK,
                 html: pug
+            };
+            RequestHandler.handlerResponse(res, dataSend);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    public static async update(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { value, fieldName } = req.body;
+            const { inventoryID } = req.params;
+            const data: Partial<InventoryInterface> = {
+                [fieldName]: value
+            };
+            const where: WhereOptions<InventoryInterface> = {
+                id: inventoryID,
+                deleted: false
+            };
+            await InventoryService.update(data, where);
+            const dataSend: StatusResponseInterface = {
+                statusCode: STATUS_CODES.OK
             };
             RequestHandler.handlerResponse(res, dataSend);
         } catch (error) {

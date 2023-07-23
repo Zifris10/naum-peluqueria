@@ -1,0 +1,47 @@
+ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
+    li.nav-item(role='presentation')
+        button.nav-link.active.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabInventory' role='tab' aria-controls='tabInventory' aria-selected='true') Inventario
+    li.nav-item(role='presentation')
+        button.nav-link.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
+.tab-content
+    .tab-pane.fade.show.active#tabInventory(role='tabpanel' tabindex='0')
+        .row
+            .col-6.mb-4
+                input.form-control.input-style(type='text' placeholder='Buscar por nombre' autocomplete='off' onkeyup='filterInventory(this.value)')
+            .col-6.mb-4.text-end
+                button.btn.text-white.btn-style.font-16.bg-blue(data-bs-toggle='modal' data-bs-target='#modalAddInventory') Agregar
+        #contentInventory
+            each val in inventory
+                .row.mb-4.mx-1.radius-20.bg-row(id=val.id)
+                    .col-6
+                        input.form-control.border-0.bg-transparent.text-center.my-3.name-inventory(type='text' placeholder='Nombre' autocomplete='off' value=val.name onchange='updateInventory("'+val.id+'","name",this.value)')
+                    .col-4
+                        input.form-control.border-0.bg-transparent.text-center.my-3(type='text' placeholder='Precio' autocomplete='off' value=val.price onchange='updateInventory("'+val.id+'","price",this.value)')
+                    .col-2.text-center
+                        i.fa-solid.fa-trash.text-danger.cursor-pointer.font-20.pt-4(onclick='showModalDeleteInventory("'+val.id+'","'+val.name+'")')
+    .tab-pane.fade#tabHistory(role='tabpanel' tabindex='0')
+        .row
+            .col-3.mb-4
+                label.form-label.color-green.fw-bold(for='inventoryHistoryStartDate') Fecha de inicio
+                input.form-control.input-style.new-appointment#inventoryHistoryStartDate(type='date' placeholder='')
+            .col-3.mb-4
+                label.form-label.color-green.fw-bold(for='inventoryHistoryEndDate') Fecha de fin
+                input.form-control.input-style.new-appointment#inventoryHistoryEndDate(type='date' placeholder='')
+            .col-6.mb-4.text-end.mt-3
+                button.btn.text-white.btn-style.font-16.bg-blue() Filtrar
+
+
+.modal.fade#modalAddInventory(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
+    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-header
+                h5.modal-title.color-blue.fw-bold Agregar artículo
+            .modal-body
+                .mb-4
+                    input.form-control.input-style.new-inventory#nameInventory(type='text' placeholder='Nombre...' autocomplete='off')
+                .row
+                    .col-6.mb-5
+                        input.form-control.input-style.new-inventory#priceInventory(type='text' placeholder='Precio...' autocomplete='off')
+                .text-center
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddInventory()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddInventory(onclick='addInventory()') Agregar

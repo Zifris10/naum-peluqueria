@@ -28,21 +28,16 @@
             .modal-header
                 h5.modal-title.color-blue.fw-bold Detalle de la cita
                 button.btn-close.color-blue(data-bs-dismiss='modal')
-            //-.modal-body
-                .mb-3
-                    label.form-label.color-green.fw-bold(for='dateAppointment') Fecha de cita
-                    input.form-control.input-style.new-appointment#dateAppointment(type='date' placeholder='')
-                .row
-                    .col-6.mb-4
-                        label.form-label.color-green.fw-bold(for='startTimeAppointment') Hora de inicio
-                        input.form-control.input-style.new-appointment#startTimeAppointment(type='time' placeholder='')
-                    .col-6.mb-4
-                        label.form-label.color-green.fw-bold(for='endTimeAppointment') Hora de inicio
-                        input.form-control.input-style.new-appointment#endTimeAppointment(type='time' placeholder='')
-                .mb-4
-                    input.form-control.input-style.new-appointment#nameAppointment(type='text' placeholder='Nombre...' autocomplete='off')
+            .modal-body
+                .mb-2
+                    span.font-18.fw-bold Nombre: 
+                    span.font-18#spanNameAppointment
+                .mb-2
+                    span.font-18.fw-bold Teléfono: 
+                    span.font-18#spanPhoneAppointment
                 .mb-5
-                    input.form-control.input-style.new-appointment#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
-                //-.text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddAppointment()') Cancelar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddAppointment(onclick='addAppointment()') Agregar
+                    span.font-18.fw-bold Fecha y hora: 
+                    span.font-18#spanDateAppointment
+                .text-center
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue#btnDeleteAppointment(data-bs-dismiss='modal') Eliminar
+                    button.btn.text-white.btn-style.font-16.bg-blue(onclick='addAppointment()') Completar

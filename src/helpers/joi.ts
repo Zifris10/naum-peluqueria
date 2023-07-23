@@ -118,3 +118,21 @@ export const schemaCreateInventory: ObjectSchema<InventoryInterface> = Joi.objec
         'any.required': `Oops, lo sentimos pero el precio es requerido.`
     })
 });
+
+export const schemaUpdateInventory: ObjectSchema = Joi.object({
+    fieldName: string.valid('name', 'price').messages({
+        'any.required': `Oops, lo sentimos pero el nombre del campo es requerido.`,
+        'any.only': `Oops, lo sentimos pero el nombre del campo solo debe ser nombre o precio.`
+    }),
+    value: Joi.alternatives().try(number.positive().allow(0), string.min(5).max(100)).required().messages({
+        'string.min': `Oops, lo sentimos pero el nombre debe tener mínimo 5 caracteres.`,
+        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 100 caracteres.`,
+        'string.base': `Oops, lo sentimos pero el nombre debe ser una cadena de texto.`,
+        'string.empty': `Oops, lo sentimos pero el nombre no puede estar vacío.`,
+        'any.required': `Oops, lo sentimos pero el nombre o precio es requerido.`,
+        'number.positive': `Oops, lo sentimos pero el precio debe ser un número positivo.`,
+        'number.base': `Oops, lo sentimos pero el precio debe ser un número.`,
+        'number.integer': `Oops, lo sentimos pero el precio debe ser un número entero.`,
+        'alternatives.types': `Oops, lo sentimos pero el value debe ser un número entero o un texto.`
+    })
+});
