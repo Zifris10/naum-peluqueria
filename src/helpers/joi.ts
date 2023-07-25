@@ -96,6 +96,15 @@ export const schemaCreateAppointment: ObjectSchema = Joi.object({
     })
 });
 
+export const schemaCompleteAppointment: ObjectSchema = Joi.object({
+    price: number.positive().allow(0).messages({
+        'number.positive': `Oops, lo sentimos pero el precio debe ser un número positivo.`,
+        'number.base': `Oops, lo sentimos pero el precio debe ser un número.`,
+        'number.integer': `Oops, lo sentimos pero el precio debe ser un número entero.`,
+        'any.required': `Oops, lo sentimos pero el precio es requerido.`
+    })
+});
+
 // INVENTORY
 export const schemaInventoryID: ObjectSchema = Joi.object({
     inventoryID: uuid.messages({

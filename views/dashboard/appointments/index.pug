@@ -1,4 +1,20 @@
-#renderCalendar
+ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
+    li.nav-item(role='presentation')
+        button.nav-link.active.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabCalendar' role='tab' aria-controls='tabCalendar' aria-selected='true') Calendario
+    li.nav-item(role='presentation')
+        button.nav-link.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
+.tab-content
+    .tab-pane.fade.show.active#tabCalendar(role='tabpanel' tabindex='0')
+        #renderCalendar
+    .tab-pane.fade#tabHistory(role='tabpanel' tabindex='0')
+        .row
+            .col-6.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-xxl-3.mb-4
+                label.form-label.color-green.fw-bold(for='appointmentHistoryStartDate') Fecha de inicio
+                input.form-control.input-style#appointmentHistoryStartDate(type='date' placeholder='')
+            .col-6.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-xxl-3.mb-4
+                label.form-label.color-green.fw-bold(for='appointmenHistoryEndDate') Fecha de fin
+                input.form-control.input-style#appointmenHistoryEndDate(type='date' placeholder='')
+        #contentHistoryAppointments
 .modal.fade#modalAddAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
@@ -40,4 +56,17 @@
                     span.font-18#spanDateAppointment
                 .text-center
                     button.btn.text-white.btn-cancel.font-16.me-3.color-blue#btnDeleteAppointment(data-bs-dismiss='modal') Eliminar
-                    button.btn.text-white.btn-style.font-16.bg-blue(onclick='addAppointment()') Completar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnCompleteAppointment(data-bs-dismiss='modal') Completar
+.modal.fade#modalCompleteAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
+    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-body
+                br
+                .row
+                    .col-12.mb-2
+                        p.font-17.fw-bold#priceCompleteAppointment
+                    .col-6.mb-5
+                        input.form-control.input-style#inputPriceCompleteAppointment(type='text' placeholder='Precio...' autocomplete='off')
+                .text-center
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanConfirmCompleteAppointment()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnConfirmCompleteAppointment Completar

@@ -76,11 +76,11 @@ const renderCalendar = (events) => {
         events,
         eventClick: (info) => {
             const { event } = info;
-            console.log(event)
             $('#spanNameAppointment').text(event.title);
             $('#spanPhoneAppointment').text(event.extendedProps.phone);
             $('#spanDateAppointment').text(convertDate(event.start));
             $('#btnDeleteAppointment').attr('onclick','showModalDeleteAppointment("'+event.id+'","'+event.title+'")');
+            $('#btnCompleteAppointment').attr('onclick','showModalCompleteAppointment("'+event.id+'","'+event.title+'")');
             $('#modalDetailAppointment').modal('show');
         },
         dateClick: (info) => {
@@ -145,6 +145,36 @@ const deleteAppointment = async (appointmentID) => {
     } else {
         showToast(axiosRequest.message, 'error');
     }
+};
+
+const showModalCompleteAppointment = (appointmentID, name) => {
+    $('#priceCompleteAppointment').text(`Por favor ingresa el precio del corte para ${name}`);
+    $('#btnConfirmCompleteAppointment').attr('onclick','completeAppointment("'+appointmentID+'")');
+    $('#modalCompleteAppointment').modal('show');
+};
+
+const completeAppointment = async (appointmentID) => {
+    const btn = $('#btnConfirmCompleteAppointment');
+    btn.html('<span class="spinner-border" role="status" aria-hidden="true"></span>').prop('disabled', true);
+    const price = $('#inputPriceCompleteAppointment').val();
+    const data = {
+        price
+    };
+    const axiosRequest = await requestAxios(true, 'PUT', `/appointments/${appointmentID}/complete`, data);
+    if(axiosRequest.statusCode === 200) {
+        const id = calendar.getEventById(appointmentID);
+        id.remove();
+        showToast('Has finalizado la cita correctamente.', 'success');
+        cleanConfirmCompleteAppointment();
+    } else {
+        showToast(axiosRequest.message, 'error');
+    }
+    btn.html('Completar').prop('disabled', false);
+};
+
+const cleanConfirmCompleteAppointment = () => {
+    $('#inputPriceCompleteAppointment').val('');
+    $('#modalCompleteAppointment').modal('hide');
 };
 
 /////////////////////////////////

@@ -97,6 +97,29 @@ class AppointmentsController {
             next(error);
         }
     }
+
+    public static async complete(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { price } = req.body;
+            const { appointmentID } = req.params;
+            const data: Partial<AppointmentsInterface> = {
+                price,
+                completed: true
+            };
+            const where: WhereOptions<AppointmentsInterface> = {
+                id: appointmentID,
+                deleted: false,
+                completed: false
+            };
+            await AppointmentsService.update(data, where);
+            const dataSend: StatusResponseInterface = {
+                statusCode: STATUS_CODES.OK
+            };
+            RequestHandler.handlerResponse(res, dataSend);
+        } catch (error) {
+            next(error);
+        }
+    }
 };
 
 export default AppointmentsController;

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { jwtVerifyTokenSuperAdmin, QUERY_PARAMS, schemaAppointmentID, schemaCreateAppointment } from '../helpers';
+import { jwtVerifyTokenSuperAdmin, QUERY_PARAMS, schemaAppointmentID, schemaCreateAppointment, schemaCompleteAppointment } from '../helpers';
 import { ValidatorHandler } from '../handlers';
 import AppointmentsController from './appointments.ctrl';
 
@@ -14,6 +14,11 @@ appointmentsRoute
     .post('/', [
         ValidatorHandler.validate(schemaCreateAppointment, QUERY_PARAMS.BODY),
         jwtVerifyTokenSuperAdmin
-    ], AppointmentsController.create);
+    ], AppointmentsController.create)
+    .put('/:appointmentID/complete', [
+        ValidatorHandler.validate(schemaAppointmentID, QUERY_PARAMS.PARAMS),
+        ValidatorHandler.validate(schemaCompleteAppointment, QUERY_PARAMS.BODY),
+        jwtVerifyTokenSuperAdmin
+    ], AppointmentsController.complete);
 
 export default appointmentsRoute;
