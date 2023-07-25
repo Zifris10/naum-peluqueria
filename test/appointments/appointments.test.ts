@@ -1219,6 +1219,319 @@ describe('GET /appointments/', () => {
     });
 });
 
+describe('PUT /appointments/:appointmentID/complete', () => {
+    const urlAPI: string = '/appointments/';
+
+    test(`When appointmentID is not uuid`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}uuid/complete`).set({ Authorization: tokenNaum }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When appointmentID is not found`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: tokenNaum }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.NOT_FOUND);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.NOT_FOUND);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.NOT_FOUND);
+    });
+
+    test(`When we don't have a token`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+
+    test(`When token is null`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: null }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is json`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: {} }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is number`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 123 }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is array`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: [] }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is string`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'hola' }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is boolean`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: true }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+
+    test(`When token is Date`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: new Date() }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is not valid`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIybmxJWm41djQiLCJpYXQiOjE2NzMzNjg4MzksImV4cCI6MTY3MzQxMjAzOX0.ZVo8zfhJj0meY9wVDk22WRQr' }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+    
+    test(`When token is expired`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIybmxJWm41djQiLCJpYXQiOjE2NzMzNjg4MzksImV4cCI6MTY3MzQxMjAzOX0.ZVo8zfhJj0meY9wVDk22WRQrUuMpxHn0VrjkawqbT5w' }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.UNAUTHORIZED);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.UNAUTHORIZED);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.UNAUTHORIZED);
+    });
+
+    test(`When price is undefined`, async () => {
+        const data = {};
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is null`, async () => {
+        const data = {
+            price: null
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is json`, async () => {
+        const data = {
+            price: {}
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is array`, async () => {
+        const data = {
+            price: []
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is boolean`, async () => {
+        const data = {
+            price: false
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is Date`, async () => {
+        const data = {
+            price: new Date()
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is empty`, async () => {
+        const data = {
+            price: ''
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When price is a negative number`, async () => {
+        const data = {
+            price: -400
+        };
+        const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data).set({ Authorization: tokenNaum });
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.BAD_REQUEST);
+        expect(body.error).toBeDefined();
+        expect(body.error).toEqual(STATUS_CODES_NAME.BAD_REQUEST);
+        expect(body.message).toBeDefined();
+        expect(body.message).toEqual(expect.any(String));
+        expect(res.status).toBe(STATUS_CODES.BAD_REQUEST);
+    });
+
+    test(`When token is valid and appointmentID is valid`, async () => {
+        const data = {
+            price: 400
+        };
+        const res = await server.put(`${urlAPI}${appointmentID}/complete`).set({ Authorization: tokenNaum }).send(data);
+        const { body } = res;
+        expect(body.statusCode).toBeDefined();
+        expect(body.statusCode).toBe(STATUS_CODES.OK);
+        expect(res.status).toBe(STATUS_CODES.OK);
+    });
+});
+
 describe('DELETE /appointments/:appointmentID', () => {
     const urlAPI: string = '/appointments/';
 
