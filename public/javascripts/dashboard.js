@@ -32,19 +32,49 @@ const getHash = async () => {
         '#inventory': {
             url: '/inventory/',
             title: 'Inventario'
+        },
+        '#welcome': {
+            url: '/welcome/',
+            title: 'Bienvenido'
         }
     };
     const urlData = menuData[location.hash];
     if(urlData) {
-        const axiosRequest = await requestAxios(true, 'GET', urlData.url, {});
-        document.title = urlData.title;
-        if(axiosRequest.statusCode === 200) {
-            content.html(axiosRequest.html);
-            if(urlData.url === '/appointments/') {
-                renderCalendar(axiosRequest.data);
+        if(location.hash === '#welcome') {
+            const hours = new Date().getHours();
+            let text = 'buenos días';
+            if(hours >= 12 && hours < 19) {
+                text = 'buenas tardes';
+            } else if(hours >= 19 && hours <= 23) {
+                text = 'buenas noches';
             }
+            const html = `<div class="text-center">
+                <img class="img-fluid rounded mb-5" src="../images/logo.jpeg" width="200">
+                <p class="color-blue font-30">
+                    ¡Hola, ${text} 
+                    <span id="nameSapnWelcome"></span>!
+                </p>
+                <br>
+                <br>
+                <button class="btn text-white btn-style font-16 bg-blue" onclick="location.href = '#calendar'">Ir a citas</button>
+                <br>
+                <br>
+                <br>
+                <button class="btn text-white btn-style font-16 bg-blue" onclick="location.href = '#inventory'">Ir a inventario</button>
+            </div>`;
+            content.html(html);
+            getProfile();
         } else {
-            logout();
+            const axiosRequest = await requestAxios(true, 'GET', urlData.url, {});
+            document.title = urlData.title;
+            if(axiosRequest.statusCode === 200) {
+                content.html(axiosRequest.html);
+                if(urlData.url === '/appointments/') {
+                    renderCalendar(axiosRequest.data);
+                }
+            } else {
+                logout();
+            }
         }
     } else {
         logout();
@@ -59,6 +89,10 @@ const getProfile = async () => {
     if(axiosRequest.statusCode === 200) {
         const { data } = axiosRequest;
         $('#navbarName').text(data.name);
+        const nameSapnWelcome = $('#nameSapnWelcome');
+        if(nameSapnWelcome) {
+            nameSapnWelcome.text(data.name);
+        }
     } else {
         logout();
     }

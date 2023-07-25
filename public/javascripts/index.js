@@ -47,7 +47,7 @@ const login = async () => {
     if(axiosRequest.statusCode === 200) {
         localStorage.setItem('naumToken', axiosRequest.token);
         localStorage.setItem('naumRefreshToken', axiosRequest.refreshToken);
-        location.href = '/views/dashboard#calendar';
+        location.href = '/views/dashboard#welcome';
     } else {
         showToast(axiosRequest.message, 'error');
         btn.html('Iniciar sesión').prop('disabled', false);
