@@ -9,6 +9,7 @@ import { badRequest } from '@hapi/boom';
 interface QueryParamsAppointments {
     startDate?: string;
     endDate?: string;
+    worker?: string;
 }
 
 class AppointmentsController {
@@ -129,7 +130,7 @@ class AppointmentsController {
 
     public static async history(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { startDate, endDate } = req.query as QueryParamsAppointments;
+            const { startDate, endDate, worker } = req.query as QueryParamsAppointments;
             const correctStartDate: Date = dayjsSetStartDate(startDate!);
             const correctEndDate: Date = dayjsSetEndDate(endDate!);
             if(correctStartDate >= correctEndDate) {
@@ -138,6 +139,7 @@ class AppointmentsController {
             const where: WhereOptions<AppointmentsInterface> = {
                 deleted: false,
                 completed: true,
+                worker,
                 startDate: {
                     [Op.between]: [correctStartDate, correctEndDate]
                 }

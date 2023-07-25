@@ -217,10 +217,11 @@ const cleanConfirmCompleteAppointment = () => {
 const filterHistoryAppointment = async () => {
     const startDate = $('#appointmentHistoryStartDate').val();
     const endDate = $('#appointmenHistoryEndDate').val();
+    const worker = $('#appointmenHistoryWorker').val();
     if(startDate && endDate) {
         const content = $('#contentHistoryAppointments');
         content.html('<div class="text-center mt-5"><div class="spinner-border color-blue" style="width: 6rem; height: 6rem;" role="status"></div></div>');
-        const axiosRequest = await requestAxios(true, 'GET', `/appointments/history?startDate=${startDate}&endDate=${endDate}`, {});
+        const axiosRequest = await requestAxios(true, 'GET', `/appointments/history?startDate=${startDate}&endDate=${endDate}&worker=${worker}`, {});
         if(axiosRequest.statusCode === 200) {
             content.html(axiosRequest.html);
         } else {
