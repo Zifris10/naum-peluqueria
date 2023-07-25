@@ -63,8 +63,13 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
             .modal-body
                 br
                 .row
-                    .col-12.mb-2
+                    .col-12.mb-4
                         p.font-17.fw-bold#priceCompleteAppointment
+                    .col-6.mb-5
+                        select.form-select.input-style#inputWorkerCompleteAppointment
+                            option(selected disabled value='') Selecciona una opción
+                            option(value='Naum') Naum
+                            option(value='Otro') Otro
                     .col-6.mb-5
                         input.form-control.input-style#inputPriceCompleteAppointment(type='text' placeholder='Precio...' autocomplete='off')
                 .text-center

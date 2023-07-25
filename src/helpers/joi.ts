@@ -102,6 +102,13 @@ export const schemaCompleteAppointment: ObjectSchema = Joi.object({
         'number.base': `Oops, lo sentimos pero el precio debe ser un número.`,
         'number.integer': `Oops, lo sentimos pero el precio debe ser un número entero.`,
         'any.required': `Oops, lo sentimos pero el precio es requerido.`
+    }),
+    worker: string.min(4).max(50).messages({
+        'string.min': `Oops, lo sentimos pero el nombre debe tener mínimo 4 caracteres.`,
+        'string.max': `Oops, lo sentimos pero el nombre debe tener máximo 50 caracteres.`,
+        'string.base': `Oops, lo sentimos pero el nombre debe ser una cadena de texto.`,
+        'string.empty': `Oops, lo sentimos pero el nombre no puede estar vacío.`,
+        'any.required': `Oops, lo sentimos pero el nombre es requerido.`
     })
 });
 

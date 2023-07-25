@@ -58,6 +58,11 @@ export const AppointmentsModel: ModelDefined<
     deletedBy: {
         type: DataTypes.UUID,
         allowNull: true
+    },
+    worker: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        defaultValue: ''
     }
 }, {
     schema: SCHEMAS.PUBLIC

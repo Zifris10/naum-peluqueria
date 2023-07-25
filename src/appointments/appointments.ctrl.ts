@@ -105,10 +105,11 @@ class AppointmentsController {
 
     public static async complete(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { price } = req.body;
+            const { price, worker } = req.body;
             const { appointmentID } = req.params;
             const data: Partial<AppointmentsInterface> = {
                 price,
+                worker,
                 completed: true
             };
             const where: WhereOptions<AppointmentsInterface> = {

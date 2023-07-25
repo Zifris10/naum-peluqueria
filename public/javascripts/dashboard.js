@@ -191,8 +191,10 @@ const completeAppointment = async (appointmentID) => {
     const btn = $('#btnConfirmCompleteAppointment');
     btn.html('<span class="spinner-border" role="status" aria-hidden="true"></span>').prop('disabled', true);
     const price = $('#inputPriceCompleteAppointment').val();
+    const worker = $('#inputWorkerCompleteAppointment').val();
     const data = {
-        price
+        price,
+        worker
     };
     const axiosRequest = await requestAxios(true, 'PUT', `/appointments/${appointmentID}/complete`, data);
     if(axiosRequest.statusCode === 200) {
@@ -207,6 +209,7 @@ const completeAppointment = async (appointmentID) => {
 };
 
 const cleanConfirmCompleteAppointment = () => {
+    $('#inputWorkerCompleteAppointment').val('');
     $('#inputPriceCompleteAppointment').val('');
     $('#modalCompleteAppointment').modal('hide');
 };

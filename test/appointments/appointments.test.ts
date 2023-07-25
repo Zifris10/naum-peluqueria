@@ -1070,7 +1070,8 @@ describe('POST /appointments/', () => {
             createdBy: expect.any(String),
             updatedAt: expect.any(String),
             createdAt: expect.any(String),
-            deletedBy: null
+            deletedBy: null,
+            worker: ''
         });
         appointmentID = body.data.id;
         expect(res.status).toBe(STATUS_CODES.OK);
@@ -1224,7 +1225,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When appointmentID is not uuid`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}uuid/complete`).set({ Authorization: tokenNaum }).send(data);
         const { body } = res;
@@ -1239,7 +1241,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When appointmentID is not found`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: tokenNaum }).send(data);
         const { body } = res;
@@ -1254,7 +1257,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When we don't have a token`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).send(data);
         const { body } = res;
@@ -1269,7 +1273,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When token is null`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: null }).send(data);
         const { body } = res;
@@ -1284,7 +1289,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is json`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: {} }).send(data);
         const { body } = res;
@@ -1299,7 +1305,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is number`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 123 }).send(data);
         const { body } = res;
@@ -1314,7 +1321,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is array`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: [] }).send(data);
         const { body } = res;
@@ -1329,7 +1337,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is string`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'hola' }).send(data);
         const { body } = res;
@@ -1344,7 +1353,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is boolean`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: true }).send(data);
         const { body } = res;
@@ -1359,7 +1369,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When token is Date`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: new Date() }).send(data);
         const { body } = res;
@@ -1374,7 +1385,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is not valid`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIybmxJWm41djQiLCJpYXQiOjE2NzMzNjg4MzksImV4cCI6MTY3MzQxMjAzOX0.ZVo8zfhJj0meY9wVDk22WRQr' }).send(data);
         const { body } = res;
@@ -1389,7 +1401,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
     
     test(`When token is expired`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${TESTING.UUID}/complete`).set({ Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiIybmxJWm41djQiLCJpYXQiOjE2NzMzNjg4MzksImV4cCI6MTY3MzQxMjAzOX0.ZVo8zfhJj0meY9wVDk22WRQrUuMpxHn0VrjkawqbT5w' }).send(data);
         const { body } = res;
@@ -1522,7 +1535,8 @@ describe('PUT /appointments/:appointmentID/complete', () => {
 
     test(`When token is valid and appointmentID is valid`, async () => {
         const data = {
-            price: 400
+            price: 400,
+            worker: 'Naum'
         };
         const res = await server.put(`${urlAPI}${appointmentID}/complete`).set({ Authorization: tokenNaum }).send(data);
         const { body } = res;

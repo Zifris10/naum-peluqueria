@@ -29,6 +29,7 @@ export interface AppointmentsInterface {
     deletedBy: string;
     createdAt: Date;
     updatedAt: Date;
+    worker: string;
 }
 
 export interface InventoryInterface {
