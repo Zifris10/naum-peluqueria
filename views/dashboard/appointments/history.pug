@@ -1,0 +1,29 @@
+- let totalPrice = 0
+each val in history
+    - totalPrice += val.price
+.row
+    .col-12
+        p.color-blue.fw-bold
+            | Total de citas: 
+            span.fw-normal.text-body #{new Intl.NumberFormat('en-US').format(history.length)}
+    .col-12
+        p.color-blue.fw-bold
+            | Total de pagos: 
+            span.fw-normal.text-body $#{new Intl.NumberFormat('en-US').format(totalPrice)}
+each val in history
+    - let days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado']
+    - let months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+    - let getDate = new Date(val.startDate)
+    - let nameDay = days[getDate.getDay()]
+    - let numberDay = String(getDate.getDate()).padStart(2, '0')
+    - let nameMonth = months[getDate.getMonth()+1]
+    - let year = getDate.getFullYear()
+    - let hour = String(getDate.getHours()).padStart(2, '0')
+    - let minutes = String(getDate.getMinutes()).padStart(2, '0')
+    .row.mb-4.mx-1.radius-20.bg-row.text-center
+        .col-6
+            p.mt-3 #{val.name}
+        .col-4
+            p.mt-3 #{nameDay} #{numberDay} de #{nameMonth} del #{year} a las #{hour}:#{minutes}
+        .col-2
+            p.mt-3 $#{val.price}

@@ -7,7 +7,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault(TIMEZONES.MX);
 
-export const dayjsSetStartDate = (date: Date): Date => {
+export const dayjsSetStartDate = (date: Date | string): Date => {
     const setDate: Date = dayjs(date).startOf('day').toDate();
     return setDate;
 };

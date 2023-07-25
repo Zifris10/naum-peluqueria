@@ -2,9 +2,14 @@ import AppointmentsService from './appointments.service';
 import { WhereOptions, FindOptions, Op } from 'sequelize';
 import { Request, Response, NextFunction } from 'express';
 import { RequestHandler } from '../handlers';
-import { trimStrings, firstLetterUpperCase, STATUS_CODES, dayjsGetCurrentDate, dayjsSubtractDays, dayjsSetStartDate, convertPugFile, generateColor } from '../helpers';
+import { trimStrings, firstLetterUpperCase, STATUS_CODES, dayjsGetCurrentDate, dayjsSubtractDays, dayjsSetStartDate, dayjsSetEndDate, convertPugFile, generateColor } from '../helpers';
 import { AppointmentsInterface, StatusResponseInterface } from '../interfaces';
 import { badRequest } from '@hapi/boom';
+
+interface QueryParamsAppointments {
+    startDate?: string;
+    endDate?: string;
+}
 
 class AppointmentsController {
     public static async delete(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -86,7 +91,7 @@ class AppointmentsController {
                 raw: true
             };
             const getData = await AppointmentsService.findAll(data);
-            const pug: string = convertPugFile('dashboard/appointments/index', {});
+            const pug: string = convertPugFile('dashboard/appointments/index', { maxDate: `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`});
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK,
                 data: getData,
@@ -114,6 +119,41 @@ class AppointmentsController {
             await AppointmentsService.update(data, where);
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK
+            };
+            RequestHandler.handlerResponse(res, dataSend);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    public static async history(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const { startDate, endDate } = req.query as QueryParamsAppointments;
+            const correctStartDate: Date = dayjsSetStartDate(startDate!);
+            const correctEndDate: Date = dayjsSetEndDate(endDate!);
+            if(correctStartDate >= correctEndDate) {
+                throw badRequest('Oops, lo sentimos pero la fecha de fin no puede ser menor a la fecha inicial.');
+            }
+            const where: WhereOptions<AppointmentsInterface> = {
+                deleted: false,
+                completed: true,
+                startDate: {
+                    [Op.between]: [correctStartDate, correctEndDate]
+                }
+            };
+            const data: FindOptions<AppointmentsInterface> = {
+                attributes: ['name', 'startDate', 'price'],
+                order: [
+                    ['startDate', 'DESC']
+                ],
+                where,
+                raw: true
+            };
+            const getData = await AppointmentsService.findAll(data);
+            const pug: string = convertPugFile('dashboard/appointments/history', { history: getData });
+            const dataSend: StatusResponseInterface = {
+                statusCode: STATUS_CODES.OK,
+                html: pug
             };
             RequestHandler.handlerResponse(res, dataSend);
         } catch (error) {
