@@ -24,10 +24,11 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
         .row
             .col-3.mb-4
                 label.form-label.color-green.fw-bold(for='inventoryHistoryStartDate') Fecha de inicio
-                input.form-control.input-style#inventoryHistoryStartDate(type='date' placeholder='' min='2023-07-22', max=maxDate)
+                input.form-control.input-style#inventoryHistoryStartDate(type='date' placeholder='' min='2023-07-22', max=maxDate onchange='filterInventoryHistory()')
             .col-3.mb-4
                 label.form-label.color-green.fw-bold(for='inventoryHistoryEndDate') Fecha de fin
-                input.form-control.input-style#inventoryHistoryEndDate(type='date' placeholder='' min='2023-07-22' max=maxDate)
+                input.form-control.input-style#inventoryHistoryEndDate(type='date' placeholder='' min='2023-07-22' max=maxDate onchange='filterInventoryHistory()')
+        #contentInventoryHistory
 .modal.fade#modalAddInventory(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content

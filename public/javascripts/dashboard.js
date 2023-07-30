@@ -340,3 +340,19 @@ const addInventoryHistory = async (inventoryID) => {
     }
     btn.html('Vender').prop('disabled', false);
 };
+
+const filterInventoryHistory = async () => {
+    const startDate = $('#inventoryHistoryStartDate').val();
+    const endDate = $('#inventoryHistoryEndDate').val();
+    if(startDate && endDate) {
+        const content = $('#contentInventoryHistory');
+        content.html('<div class="text-center mt-5"><div class="spinner-border color-blue" style="width: 6rem; height: 6rem;" role="status"></div></div>');
+        const axiosRequest = await requestAxios(true, 'GET', `/inventory-history/?startDate=${startDate}&endDate=${endDate}`, {});
+        if(axiosRequest.statusCode === 200) {
+            content.html(axiosRequest.html);
+        } else {
+            showToast(axiosRequest.message, 'error');
+            content.html('');
+        }
+    }
+};

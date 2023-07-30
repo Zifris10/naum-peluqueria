@@ -1,9 +1,10 @@
 import InventoryHistoryService from './inventory.history.service';
-import { WhereOptions, FindOptions, Op } from 'sequelize';
+import InventoryService from '../inventory/inventory.service';
+import { WhereOptions, FindOptions, Op, Sequelize } from 'sequelize';
 import { Request, Response, NextFunction } from 'express';
 import { RequestHandler } from '../handlers';
-import { STATUS_CODES, dayjsSetStartDate, dayjsSetEndDate } from '../helpers';
-import { InventoryHistoryInterface, StatusResponseInterface } from '../interfaces';
+import { STATUS_CODES, dayjsSetStartDate, dayjsSetEndDate, convertPugFile } from '../helpers';
+import { InventoryHistoryInterface, InventoryInterface, StatusResponseInterface } from '../interfaces';
 import { badRequest } from '@hapi/boom';
 
 interface QueryParamsInventoryHistory {
@@ -44,17 +45,25 @@ class InventoryHistoryController {
                     [Op.between]: [correctStartDate, correctEndDate]
                 }
             };
-            const data: FindOptions<InventoryHistoryInterface> = {
-                attributes: ['price'],
+            const dataHistory: FindOptions<InventoryHistoryInterface> = {
+                attributes: ['price', 'inventoryID', [Sequelize.fn('COUNT', Sequelize.col('id')), 'count']],
                 where,
+                group: ['price', 'inventoryID'],
+                order: [[Sequelize.literal('count'), 'DESC']],
                 raw: true
             };
-            await InventoryHistoryService.findAll(data);
-            // console.log(getData)
-            //const pug: string = convertPugFile('dashboard/inventory/index', { inventory: getData });
+            const dataInventary: FindOptions<InventoryInterface> = {
+                attributes: ['id', 'name'],
+                raw: true
+            };
+            const [ getInventory, getInventoryHistory ] = await Promise.all([
+                InventoryService.findAll(dataInventary),
+                InventoryHistoryService.findAll(dataHistory)
+            ]);
+            const pug: string = convertPugFile('dashboard/inventory/history', { inventory: getInventory, history: getInventoryHistory });
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK,
-                //html: pug
+                html: pug
             };
             RequestHandler.handlerResponse(res, dataSend);
         } catch (error) {

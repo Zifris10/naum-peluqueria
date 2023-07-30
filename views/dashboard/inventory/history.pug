@@ -1,0 +1,23 @@
+- let totalPrice = 0
+- let totalCount = 0
+each val in history
+    - totalPrice += val.price
+    - totalCount += parseInt(val.count)
+.row
+    .col-12
+        p.color-blue.fw-bold
+            | Total de artículos vendidos: 
+            span.fw-normal.text-body #{new Intl.NumberFormat('en-US').format(totalCount)}
+    .col-12
+        p.color-blue.fw-bold
+            | Total de ventas: 
+            span.fw-normal.text-body $#{new Intl.NumberFormat('en-US').format(totalPrice)}
+each val in history
+    - let findInventory = inventory.find(item => item.id === val.inventoryID)
+    .row.mb-4.mx-1.radius-20.bg-row.text-center
+        .col-2
+            p.mt-3 #{val.count}
+        .col-8
+            p.mt-3 #{findInventory.name}
+        .col-2
+            p.mt-3 $#{new Intl.NumberFormat('en-US').format(val.price)}
