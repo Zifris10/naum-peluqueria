@@ -152,3 +152,19 @@ export const schemaUpdateInventory: ObjectSchema = Joi.object({
         'alternatives.types': `Oops, lo sentimos pero el value debe ser un número entero o un texto.`
     })
 });
+
+// INVENTORY HISTORY
+export const schemaCreateInventoryHistory: ObjectSchema<InventoryInterface> = Joi.object({
+    price: number.positive().allow(0).messages({
+        'number.positive': `Oops, lo sentimos pero el precio debe ser un número positivo.`,
+        'number.base': `Oops, lo sentimos pero el precio debe ser un número.`,
+        'number.integer': `Oops, lo sentimos pero el precio debe ser un número entero.`,
+        'any.required': `Oops, lo sentimos pero el precio es requerido.`
+    }),
+    inventoryID: uuid.messages({
+        'string.guid': `Oops, lo sentimos pero el id del inventario debe ser de tipo uuid.`,
+        'string.base': `Oops, lo sentimos pero el id del inventario debe ser una cadena de texto.`,
+        'string.empty': `Oops, lo sentimos pero el id del inventario no puede estar vacío.`,
+        'any.required': `Oops, lo sentimos pero el id del inventario es requerido.`
+    })
+});

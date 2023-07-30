@@ -42,3 +42,14 @@ export interface InventoryInterface {
     createdAt: Date;
     updatedAt: Date;
 }
+
+export interface InventoryHistoryInterface {
+    id: string;
+    price: number;
+    inventoryID: string;
+    createdBy: string;
+    deleted: boolean;
+    deletedBy: string;
+    createdAt: Date;
+    updatedAt: Date;
+}

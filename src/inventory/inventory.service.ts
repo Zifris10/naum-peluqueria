@@ -1,5 +1,5 @@
 import { notFound } from '@hapi/boom';
-import { WhereOptions, FindOptions, FindAndCountOptions } from 'sequelize';
+import { WhereOptions, FindOptions } from 'sequelize';
 import { InventoryInterface } from '../interfaces';
 import { InventoryModel } from '../models';
 
@@ -18,11 +18,6 @@ class InventoryService {
 
     public static async findAll(data: FindOptions<InventoryInterface>) {
         const getData = await InventoryModel.findAll(data);
-        return getData;
-    }
-
-    public static async findAndCountAll(data: Omit<FindAndCountOptions<InventoryInterface>, 'group'>) {
-        const getData = await InventoryModel.findAndCountAll(data);
         return getData;
     }
 };

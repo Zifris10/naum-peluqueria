@@ -2,7 +2,7 @@ import InventoryService from './inventory.service';
 import { WhereOptions, FindOptions } from 'sequelize';
 import { Request, Response, NextFunction } from 'express';
 import { RequestHandler } from '../handlers';
-import { trimStrings, firstLetterUpperCase, STATUS_CODES, convertPugFile } from '../helpers';
+import { trimStrings, firstLetterUpperCase, STATUS_CODES, convertPugFile, dayjsGetCurrentDate } from '../helpers';
 import { InventoryInterface, StatusResponseInterface } from '../interfaces';
 
 class InventoryController {
@@ -50,6 +50,7 @@ class InventoryController {
 
     public static async list(_req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
+            const currentDate: Date = dayjsGetCurrentDate();
             const data: FindOptions<InventoryInterface> = {
                 attributes: ['id', 'name', 'price'],
                 order: [
@@ -61,7 +62,7 @@ class InventoryController {
                 raw: true
             };
             const getData = await InventoryService.findAll(data);
-            const pug: string = convertPugFile('dashboard/inventory/index', { inventory: getData });
+            const pug: string = convertPugFile('dashboard/inventory/index', { inventory: getData, maxDate: `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`});
             const dataSend: StatusResponseInterface = {
                 statusCode: STATUS_CODES.OK,
                 html: pug

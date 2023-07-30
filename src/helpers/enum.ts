@@ -6,7 +6,8 @@ export enum TABLES {
     APPOINTMENTS = 'appointments',
     USERS = 'users',
     SUPER_ADMINS = 'superAdmins',
-    INVENTORY = 'inventory'
+    INVENTORY = 'inventory',
+    INVENTORY_HISTORY = 'inventoryHistory'
 };
 
 export enum TOKEN_EXPIRATION {

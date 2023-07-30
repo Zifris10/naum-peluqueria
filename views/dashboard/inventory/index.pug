@@ -18,19 +18,16 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                     .col-4
                         input.form-control.border-0.bg-transparent.text-center.my-3(type='text' placeholder='Precio' autocomplete='off' value=val.price onchange='updateInventory("'+val.id+'","price",this.value)')
                     .col-2.text-center
+                        i.fa-solid.fa-dollar-sign.color-blue.cursor-pointer.font-20.pt-4.me-3(onclick='showModalSellItem("'+val.id+'","'+val.name+'",'+val.price+')')
                         i.fa-solid.fa-trash.text-danger.cursor-pointer.font-20.pt-4(onclick='showModalDeleteInventory("'+val.id+'","'+val.name+'")')
     .tab-pane.fade#tabHistory(role='tabpanel' tabindex='0')
         .row
             .col-3.mb-4
                 label.form-label.color-green.fw-bold(for='inventoryHistoryStartDate') Fecha de inicio
-                input.form-control.input-style#inventoryHistoryStartDate(type='date' placeholder='')
+                input.form-control.input-style#inventoryHistoryStartDate(type='date' placeholder='' min='2023-07-22', max=maxDate)
             .col-3.mb-4
                 label.form-label.color-green.fw-bold(for='inventoryHistoryEndDate') Fecha de fin
-                input.form-control.input-style#inventoryHistoryEndDate(type='date' placeholder='')
-            .col-6.mb-4.text-end.mt-3
-                button.btn.text-white.btn-style.font-16.bg-blue() Filtrar
-
-
+                input.form-control.input-style#inventoryHistoryEndDate(type='date' placeholder='' min='2023-07-22' max=maxDate)
 .modal.fade#modalAddInventory(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
@@ -45,3 +42,16 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                 .text-center
                     button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddInventory()') Cancelar
                     button.btn.text-white.btn-style.font-16.bg-blue#btnAddInventory(onclick='addInventory()') Agregar
+.modal.fade#modalSellItem(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
+    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+        .modal-content
+            .modal-body
+                br
+                .row
+                    .col-12.mb-3
+                        p.font-17.fw-bold#textNameSellItem
+                    .col-12.mb-5
+                        input.form-control.input-style#inputPriceSellItem(type='text' placeholder='Precio...' autocomplete='off')
+                .text-center
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(data-bs-dismiss='modal') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-blue#btnSellItem Vender

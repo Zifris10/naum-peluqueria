@@ -312,3 +312,31 @@ const updateInventory = async (inventoryID, fieldName, value) => {
         showToast(axiosRequest.message, 'error');
     }
 };
+
+/////////////////////////////////
+////// INVENTORY HISTORY ////////
+/////////////////////////////////
+const showModalSellItem = (inventoryID, name, price) => {
+    $('#textNameSellItem').html(`Producto: ${name}<br>Precio original: $${currencyFormat(price, false)}`);
+    $('#inputPriceSellItem').val(price);
+    $('#btnSellItem').attr('onclick','addInventoryHistory("'+inventoryID+'")');
+    $('#modalSellItem').modal('show');
+};
+
+const addInventoryHistory = async (inventoryID) => {
+    const btn = $('#btnSellItem');
+    btn.html('<span class="spinner-border" role="status" aria-hidden="true"></span>').prop('disabled', true);
+    const price = $('#inputPriceSellItem').val();
+    const data = {
+        inventoryID,
+        price
+    };
+    const axiosRequest = await requestAxios(true, 'POST', '/inventory-history/', data);
+    if(axiosRequest.statusCode === 200) {
+        showToast('Has vendido el artículo correctamente.', 'success');
+        $('#modalSellItem').modal('hide');
+    } else {
+        showToast(axiosRequest.message, 'error');
+    }
+    btn.html('Vender').prop('disabled', false);
+};
