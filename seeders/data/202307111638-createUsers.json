@@ -4,5 +4,11 @@
         "email": "eduardom362@gmail.com",
         "name": "Eduardo Martínez",
         "password": "$2b$10$kSdLFCDLljcBit6aUl8yhOlCfsqxVkQ3AtFRZcVx5bR.kCtJhPMJG"
+    },
+    {
+        "id": "b815dd0f-fe6d-452f-a17e-a2717ecad2f7",
+        "email": "ing.nahum3@gmail.com",
+        "name": "Nahum Pérez Oliva",
+        "password": "$2b$10$kSdLFCDLljcBit6aUl8yhOlCfsqxVkQ3AtFRZcVx5bR.kCtJhPMJG"
     }
 ]
