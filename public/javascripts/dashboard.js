@@ -314,6 +314,15 @@ const updateInventory = async (inventoryID, fieldName, value) => {
     }
 };
 
+const showHideCalculator = () => {
+    const divCalculator = document.getElementById('divCalculator');
+    if(divCalculator.className.includes('d-none')) {
+        divCalculator.classList.remove('d-none');
+    } else {
+        divCalculator.classList.add('d-none');
+    }
+};
+
 /////////////////////////////////
 ////// INVENTORY HISTORY ////////
 /////////////////////////////////
