@@ -85,6 +85,9 @@
 .span-two {
     grid-column: span 2;
 }
+.span-three {
+    grid-column: span 3;
+}
 .output{
     grid-column: 1 / -1;
     background-color: rgba(0, 0, 0, 0.75);

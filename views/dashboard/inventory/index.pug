@@ -58,26 +58,25 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                 #divCalculator.d-none
                     .calculator-grid.mb-5
                         .output
-                            .previous-operand
-                            .current-operand
-                        button.btn.border.font-16.span-two AC
-                        button.btn.border.font-16 DEL
-                        button.btn.border.font-16 /
-                        button.btn.border.font-16 1
-                        button.btn.border.font-16 2
-                        button.btn.border.font-16 3
-                        button.btn.border.font-16 *
-                        button.btn.border.font-16 4
-                        button.btn.border.font-16 5
-                        button.btn.border.font-16 6
-                        button.btn.border.font-16 +
-                        button.btn.border.font-16 7
-                        button.btn.border.font-16 8
-                        button.btn.border.font-16 9
-                        button.btn.border.font-16 -
-                        button.btn.border.font-16 .
-                        button.btn.border.font-16 0
-                        button.btn.border.font-16.span-two =
+                            .previous-operand(data-previous-operand)
+                            .current-operand(data-current-operand)
+                        button.btn.border.font-16.span-three(data-all-clear) AC
+                        button.btn.border.font-16(data-operation) /
+                        button.btn.border.font-16(data-number) 7
+                        button.btn.border.font-16(data-number) 8
+                        button.btn.border.font-16(data-number) 9
+                        button.btn.border.font-16(data-operation) *
+                        button.btn.border.font-16(data-number) 4
+                        button.btn.border.font-16(data-number) 5
+                        button.btn.border.font-16(data-number) 6
+                        button.btn.border.font-16(data-operation) -
+                        button.btn.border.font-16(data-number) 1
+                        button.btn.border.font-16(data-number) 2
+                        button.btn.border.font-16(data-number) 3
+                        button.btn.border.font-16(data-operation) +
+                        button.btn.border.font-16.span-two(data-number) 0
+                        button.btn.border.font-16(data-number) .
+                        button.btn.border.font-16(data-equals) =
                 .text-center
                     button.btn.text-white.btn-cancel.font-16.me-3.color-blue(data-bs-dismiss='modal') Cancelar
                     button.btn.text-white.btn-style.font-16.bg-blue#btnSellItem Vender
