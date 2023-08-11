@@ -10,15 +10,15 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
         .row
             .col-6.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-xxl-3.mb-4
                 label.form-label.color-green.fw-bold(for='appointmentHistoryStartDate') Fecha de inicio
-                input.form-control.input-style#appointmentHistoryStartDate(type='date' placeholder='' min='2023-07-22' max=maxDate onchange='filterHistoryAppointment()')
+                input.form-control.input-style#appointmentHistoryStartDate(type='date' placeholder='' min='2023-08-10' max=maxDate onchange='filterHistoryAppointment()')
             .col-6.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-xxl-3.mb-4
                 label.form-label.color-green.fw-bold(for='appointmenHistoryEndDate') Fecha de fin
-                input.form-control.input-style#appointmenHistoryEndDate(type='date' placeholder='' min='2023-07-22' max=maxDate onchange='filterHistoryAppointment()')
+                input.form-control.input-style#appointmenHistoryEndDate(type='date' placeholder='' min='2023-08-10' max=maxDate onchange='filterHistoryAppointment()')
             .col-6.col-sm-6.col-md-6.col-lg-3.col-xl-3.col-xxl-3.mb-4
                 label.form-label.color-green.fw-bold(for='appointmenHistoryWorker') Selecciona una opción
                 select.form-select.input-style#appointmenHistoryWorker(onchange='filterHistoryAppointment()')
                     option(value='Naum') Naum
-                    option(value='Otro') Otro
+                    option(value='Antonio') Antonio
         #contentHistoryAppointments
 .modal.fade#modalAddAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
@@ -74,7 +74,7 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                         select.form-select.input-style#inputWorkerCompleteAppointment
                             option(selected disabled value='') Selecciona una opción
                             option(value='Naum') Naum
-                            option(value='Otro') Otro
+                            option(value='Antonio') Antonio
                     .col-6.mb-5
                         input.form-control.input-style#inputPriceCompleteAppointment(type='text' placeholder='Precio...' autocomplete='off')
                 .text-center
