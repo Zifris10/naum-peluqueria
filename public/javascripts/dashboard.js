@@ -290,6 +290,7 @@ const addInventory = async () => {
                 <input class="form-control border-0 bg-transparent text-center my-3" type="text" placeholder="Precio" autocomplete="off" value="${data.price}">
             </div>
             <div class="col-2 text-center">
+                <i class="fa-solid fa-dollar-sign color-blue cursor-pointer font-20 pt-4 me-3" onclick="showModalSellItem('${data.id}','${data.name}',${data.price})"></i>
                 <i class="fa-solid fa-trash text-danger cursor-pointer font-20 pt-4" onclick="showModalDeleteInventory('${data.id}','${data.name}')"></i>
             </div>
         </div>`;
