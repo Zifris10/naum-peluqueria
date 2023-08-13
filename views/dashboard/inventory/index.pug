@@ -53,30 +53,6 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                         p.font-17.fw-bold#textNameSellItem
                     .col-8.mb-5
                         input.form-control.input-style#inputPriceSellItem(type='text' placeholder='Precio...' autocomplete='off')
-                    .col-4.mb-5.text-end
-                        i.fa-solid.fa-calculator.text-dark.cursor-pointer.font-60(onclick='showHideCalculator()')
-                #divCalculator.d-none
-                    .calculator-grid.mb-5
-                        .output
-                            .previous-operand(data-previous-operand)
-                            .current-operand(data-current-operand)
-                        button.btn.border.font-16.span-three(data-all-clear) AC
-                        button.btn.border.font-16(data-operation) /
-                        button.btn.border.font-16(data-number) 7
-                        button.btn.border.font-16(data-number) 8
-                        button.btn.border.font-16(data-number) 9
-                        button.btn.border.font-16(data-operation) *
-                        button.btn.border.font-16(data-number) 4
-                        button.btn.border.font-16(data-number) 5
-                        button.btn.border.font-16(data-number) 6
-                        button.btn.border.font-16(data-operation) -
-                        button.btn.border.font-16(data-number) 1
-                        button.btn.border.font-16(data-number) 2
-                        button.btn.border.font-16(data-number) 3
-                        button.btn.border.font-16(data-operation) +
-                        button.btn.border.font-16.span-two(data-number) 0
-                        button.btn.border.font-16(data-number) .
-                        button.btn.border.font-16(data-equals) =
                 .text-center
                     button.btn.text-white.btn-cancel.font-16.me-3.color-green(data-bs-dismiss='modal') Cancelar
                     button.btn.text-white.btn-style.font-16.bg-green#btnSellItem Vender
