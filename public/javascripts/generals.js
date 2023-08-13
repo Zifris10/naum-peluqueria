@@ -17,7 +17,7 @@ const showToast = (text, type) => {
         text,
         duration: 6000,
         style: {
-            background: type === 'error' ? '#d50000' : '#4687F9'
+            background: type === 'error' ? '#d50000' : '#426727'
         }
     }).showToast();
 };

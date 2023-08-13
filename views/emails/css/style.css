@@ -200,14 +200,17 @@ body {
     margin: auto !important;
     width: 600px !important;
 }
-.bg-blue {
-    background-color: #4687F9 !important;
+.bg-body-tertiary {
+    background-color: #F7F8F9 !important;
 }
 .bg-white {
     background-color: white !important;
 }
 .bg-black {
     background-color: black !important;
+}
+.bg-green {
+    background-color: #426727 !important;
 }
 .color-black {
     color: #1E1D2A !important;

@@ -9,8 +9,8 @@ html(lang='es')
         link(rel='stylesheet' href='../stylesheets/index.css')
         link(rel='icon' href='../images/logo.jpeg')
         title Iniciar sesión
-    body.bg-blue
-        .myForm.bg-white.radius-40
+    body.bg-body-tertiary
+        .myForm.bg-white.radius-40.shadow
             br
             .mb-4
                 input.form-control.input-style#email(type='text' placeholder='Correo electrónico *' autocomplete='off')
@@ -19,9 +19,9 @@ html(lang='es')
             .mb-5.text-center
                 span.font-16.text-secondary ¿Olvidaste tu contraseña?
                 br
-                span.cursor-pointer.font-16.color-blue.text-decoration-underline(onclick='forgotPassword()') Recuperar contraseña
+                span.cursor-pointer.font-16.color-green.text-decoration-underline(onclick='forgotPassword()') Recuperar contraseña
             .mb-4.text-center
-                button.btn.text-white.btn-iniciar-sesion.font-16.bg-blue#btnLogin(onclick='login()') Iniciar sesión
+                button.btn.text-white.btn-iniciar-sesion.font-16.bg-green#btnLogin(onclick='login()') Iniciar sesión
         script(src='../jquery/code.jquery.com_jquery-3.7.0.slim.min.js')
         script(src='../axios/axios.min.js')
         script(src='../javascripts/generals.js')
