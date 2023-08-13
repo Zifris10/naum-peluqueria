@@ -72,3 +72,9 @@
 .height-60 {
     height: 60px !important;
 }
+body {
+    background-image: url("../images/logo.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}

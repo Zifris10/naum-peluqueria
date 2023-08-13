@@ -49,7 +49,7 @@ const getHash = async () => {
                 text = 'buenas noches';
             }
             const html = `<div class="text-center">
-                <img class="img-fluid rounded mb-5" src="../images/logo.jpeg" width="200">
+                <img class="img-fluid rounded mb-5 invisible" src="../images/logo.jpeg" width="200">
                 <p class="color-green font-30">
                     ¡Hola, ${text} 
                     <span id="nameSapnWelcome"></span>!
