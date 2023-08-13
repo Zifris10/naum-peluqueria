@@ -5,11 +5,11 @@ each val in history
     - totalCount += parseInt(val.count)
 .row
     .col-12
-        p.color-blue.fw-bold
+        p.color-green.fw-bold
             | Total de artículos vendidos: 
             span.fw-normal.text-body #{new Intl.NumberFormat('en-US').format(totalCount)}
     .col-12
-        p.color-blue.fw-bold
+        p.color-green.fw-bold
             | Total de ventas: 
             span.fw-normal.text-body $#{new Intl.NumberFormat('en-US').format(totalPrice)}
 each val in history

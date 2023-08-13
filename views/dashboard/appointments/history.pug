@@ -3,11 +3,11 @@ each val in history
     - totalPrice += val.price
 .row
     .col-12
-        p.color-blue.fw-bold
+        p.color-green.fw-bold
             | Total de citas: 
             span.fw-normal.text-body #{new Intl.NumberFormat('en-US').format(history.length)}
     .col-12
-        p.color-blue.fw-bold
+        p.color-green.fw-bold
             | Total de pagos: 
             span.fw-normal.text-body $#{new Intl.NumberFormat('en-US').format(totalPrice)}
 each val in history

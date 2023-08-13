@@ -1,8 +1,8 @@
 ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
     li.nav-item(role='presentation')
-        button.nav-link.active.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabCalendar' role='tab' aria-controls='tabCalendar' aria-selected='true') Calendario
+        button.nav-link.active.height-60.radius-20.border.bg-green.text-white(data-bs-toggle='pill' data-bs-target='#tabCalendar' role='tab' aria-controls='tabCalendar' aria-selected='true') Calendario
     li.nav-item(role='presentation')
-        button.nav-link.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
+        button.nav-link.height-60.radius-20.border.bg-green.text-white(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
 .tab-content
     .tab-pane.fade.show.active#tabCalendar(role='tabpanel' tabindex='0')
         #renderCalendar
@@ -24,7 +24,7 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
             .modal-header
-                h5.modal-title.color-blue.fw-bold Agregar cita
+                h5.modal-title.fw-bold Agregar cita
             .modal-body
                 .mb-3
                     label.form-label.color-green.fw-bold(for='dateAppointment') Fecha de cita
@@ -41,14 +41,14 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                 .mb-5
                     input.form-control.input-style.new-appointment#phoneAppointment(type='text' placeholder='Teléfono (opcional)...' autocomplete='off')
                 .text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddAppointment()') Cancelar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddAppointment(onclick='addAppointment()') Agregar
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-green(onclick='cleanAddAppointment()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-green#btnAddAppointment(onclick='addAppointment()') Agregar
 .modal.fade#modalDetailAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
             .modal-header
-                h5.modal-title.color-blue.fw-bold Detalle de la cita
-                button.btn-close.color-blue(data-bs-dismiss='modal')
+                h5.modal-title.color-green.fw-bold Detalle de la cita
+                button.btn-close.color-green(data-bs-dismiss='modal')
             .modal-body
                 .mb-2
                     span.font-18.fw-bold Nombre: 
@@ -60,8 +60,8 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                     span.font-18.fw-bold Fecha y hora: 
                     span.font-18#spanDateAppointment
                 .text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue#btnDeleteAppointment(data-bs-dismiss='modal') Eliminar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnCompleteAppointment(data-bs-dismiss='modal') Completar
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-green#btnDeleteAppointment(data-bs-dismiss='modal') Eliminar
+                    button.btn.text-white.btn-style.font-16.bg-green#btnCompleteAppointment(data-bs-dismiss='modal') Completar
 .modal.fade#modalCompleteAppointment(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
@@ -78,5 +78,5 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                     .col-6.mb-5
                         input.form-control.input-style#inputPriceCompleteAppointment(type='text' placeholder='Precio...' autocomplete='off')
                 .text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanConfirmCompleteAppointment()') Cancelar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnConfirmCompleteAppointment Completar
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-green(onclick='cleanConfirmCompleteAppointment()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-green#btnConfirmCompleteAppointment Completar

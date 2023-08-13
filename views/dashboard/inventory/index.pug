@@ -1,15 +1,15 @@
 ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
     li.nav-item(role='presentation')
-        button.nav-link.active.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabInventory' role='tab' aria-controls='tabInventory' aria-selected='true') Inventario
+        button.nav-link.active.height-60.radius-20.border.bg-green.text-white(data-bs-toggle='pill' data-bs-target='#tabInventory' role='tab' aria-controls='tabInventory' aria-selected='true') Inventario
     li.nav-item(role='presentation')
-        button.nav-link.height-60.radius-20.border(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
+        button.nav-link.height-60.radius-20.border.bg-green.text-white(data-bs-toggle='pill' data-bs-target='#tabHistory' role='tab' aria-controls='tabHistory' aria-selected='false') Historial
 .tab-content
     .tab-pane.fade.show.active#tabInventory(role='tabpanel' tabindex='0')
         .row
-            .col-6.mb-4
+            .col-6.col-sm-6.col-md-6.col-lg-4.col-xl-3.col-xxl-3.mb-4
                 input.form-control.input-style(type='text' placeholder='Buscar por nombre' autocomplete='off' onkeyup='filterInventory(this.value)')
-            .col-6.mb-4.text-end
-                button.btn.text-white.btn-style.font-16.bg-blue(data-bs-toggle='modal' data-bs-target='#modalAddInventory') Agregar
+            .col-6.col-sm-6.col-md-6.col-lg-8.col-xl-9.col-xxl-9.mb-4.text-end
+                button.btn.text-white.btn-style.font-16.bg-green(data-bs-toggle='modal' data-bs-target='#modalAddInventory') Agregar
         #contentInventory
             each val in inventory
                 .row.mb-4.mx-1.radius-20.bg-row(id=val.id)
@@ -18,7 +18,7 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                     .col-4
                         input.form-control.border-0.bg-transparent.text-center.my-3(type='text' placeholder='Precio' autocomplete='off' value=val.price onchange='updateInventory("'+val.id+'","price",this.value)')
                     .col-2.text-center
-                        i.fa-solid.fa-dollar-sign.color-blue.cursor-pointer.font-20.pt-4.me-3(onclick='showModalSellItem("'+val.id+'","'+val.name+'",'+val.price+')')
+                        i.fa-solid.fa-dollar-sign.color-green.cursor-pointer.font-20.pt-4.me-3(onclick='showModalSellItem("'+val.id+'","'+val.name+'",'+val.price+')')
                         i.fa-solid.fa-trash.text-danger.cursor-pointer.font-20.pt-4(onclick='showModalDeleteInventory("'+val.id+'","'+val.name+'")')
     .tab-pane.fade#tabHistory(role='tabpanel' tabindex='0')
         .row
@@ -33,7 +33,7 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
             .modal-header
-                h5.modal-title.color-blue.fw-bold Agregar artículo
+                h5.modal-title.color-green.fw-bold Agregar artículo
             .modal-body
                 .mb-4
                     input.form-control.input-style.new-inventory#nameInventory(type='text' placeholder='Nombre...' autocomplete='off')
@@ -41,8 +41,8 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                     .col-6.mb-5
                         input.form-control.input-style.new-inventory#priceInventory(type='text' placeholder='Precio...' autocomplete='off')
                 .text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(onclick='cleanAddInventory()') Cancelar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnAddInventory(onclick='addInventory()') Agregar
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-green(onclick='cleanAddInventory()') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-green#btnAddInventory(onclick='addInventory()') Agregar
 .modal.fade#modalSellItem(tabindex='-1' data-bs-backdrop='static' data-bs-keyboard='false')
     .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
         .modal-content
@@ -78,5 +78,5 @@ ul.nav.nav-pills.nav-justified.mb-4(role='tablist')
                         button.btn.border.font-16(data-number) .
                         button.btn.border.font-16(data-equals) =
                 .text-center
-                    button.btn.text-white.btn-cancel.font-16.me-3.color-blue(data-bs-dismiss='modal') Cancelar
-                    button.btn.text-white.btn-style.font-16.bg-blue#btnSellItem Vender
+                    button.btn.text-white.btn-cancel.font-16.me-3.color-green(data-bs-dismiss='modal') Cancelar
+                    button.btn.text-white.btn-style.font-16.bg-green#btnSellItem Vender

@@ -23,7 +23,7 @@ const logout = () => {
 const getHash = async () => {
     document.documentElement.scrollTop = 0;
     const content = $('#contentDiv');
-    content.html('<div class="text-center mt-5"><div class="spinner-border color-blue" style="width: 6rem; height: 6rem;" role="status"></div></div>');
+    content.html('<div class="text-center mt-5"><div class="spinner-border color-green" style="width: 6rem; height: 6rem;" role="status"></div></div>');
     const menuData = {
         '#calendar': {
             url: '/appointments/',
@@ -50,17 +50,17 @@ const getHash = async () => {
             }
             const html = `<div class="text-center">
                 <img class="img-fluid rounded mb-5" src="../images/logo.jpeg" width="200">
-                <p class="color-blue font-30">
+                <p class="color-green font-30">
                     ¡Hola, ${text} 
                     <span id="nameSapnWelcome"></span>!
                 </p>
                 <br>
                 <br>
-                <button class="btn text-white btn-style font-16 bg-blue" onclick="location.href = '#calendar'">Ir a citas</button>
+                <button class="btn text-white btn-style font-16 bg-green" onclick="location.href = '#calendar'">Ir a citas</button>
                 <br>
                 <br>
                 <br>
-                <button class="btn text-white btn-style font-16 bg-blue" onclick="location.href = '#inventory'">Ir a inventario</button>
+                <button class="btn text-white btn-style font-16 bg-green" onclick="location.href = '#inventory'">Ir a inventario</button>
             </div>`;
             content.html(html);
             getProfile();
@@ -248,7 +248,7 @@ const filterHistoryAppointment = async () => {
     const worker = $('#appointmenHistoryWorker').val();
     if(startDate && endDate) {
         const content = $('#contentHistoryAppointments');
-        content.html('<div class="text-center mt-5"><div class="spinner-border color-blue" style="width: 6rem; height: 6rem;" role="status"></div></div>');
+        content.html('<div class="text-center mt-5"><div class="spinner-border color-green" style="width: 6rem; height: 6rem;" role="status"></div></div>');
         const axiosRequest = await requestAxios(true, 'GET', `/appointments/history?startDate=${startDate}&endDate=${endDate}&worker=${worker}`, {});
         if(axiosRequest.statusCode === 200) {
             content.html(axiosRequest.html);
@@ -318,7 +318,7 @@ const addInventory = async () => {
                 <input class="form-control border-0 bg-transparent text-center my-3" type="text" placeholder="Precio" autocomplete="off" value="${data.price}">
             </div>
             <div class="col-2 text-center">
-                <i class="fa-solid fa-dollar-sign color-blue cursor-pointer font-20 pt-4 me-3" onclick="showModalSellItem('${data.id}','${data.name}',${data.price})"></i>
+                <i class="fa-solid fa-dollar-sign color-green cursor-pointer font-20 pt-4 me-3" onclick="showModalSellItem('${data.id}','${data.name}',${data.price})"></i>
                 <i class="fa-solid fa-trash text-danger cursor-pointer font-20 pt-4" onclick="showModalDeleteInventory('${data.id}','${data.name}')"></i>
             </div>
         </div>`;
@@ -469,7 +469,7 @@ const filterInventoryHistory = async () => {
     const endDate = $('#inventoryHistoryEndDate').val();
     if(startDate && endDate) {
         const content = $('#contentInventoryHistory');
-        content.html('<div class="text-center mt-5"><div class="spinner-border color-blue" style="width: 6rem; height: 6rem;" role="status"></div></div>');
+        content.html('<div class="text-center mt-5"><div class="spinner-border color-green" style="width: 6rem; height: 6rem;" role="status"></div></div>');
         const axiosRequest = await requestAxios(true, 'GET', `/inventory-history/?startDate=${startDate}&endDate=${endDate}`, {});
         if(axiosRequest.statusCode === 200) {
             content.html(axiosRequest.html);

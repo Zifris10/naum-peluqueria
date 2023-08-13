@@ -10,7 +10,7 @@ html(lang='es')
         link(rel='icon' href='../images/logo.jpeg')
         title Calendario
     body(onhashchange='getHash()')
-        nav.navbar.navbar-expand-lg.bg-blue.style-navbar.shadow.sticky-top
+        nav.navbar.navbar-expand-lg.bg-black.style-navbar.shadow.sticky-top
             .container-fluid
                 span.font-16.text-white#navbarName
                 .d-flex.dropdown
@@ -22,7 +22,7 @@ html(lang='es')
                             a.dropdown-item.cursor-pointer(onclick='logout()') Cerrar sesión
         #contentDiv.container-fluid.my-4
             .text-center
-                .spinner-border.color-blue(style='width: 6rem; height: 6rem;' role='status')
+                .spinner-border.color-green(style='width: 6rem; height: 6rem;' role='status')
         .modal.fade#deleteModal(tabindex='-1' aria-hidden='true' data-bs-backdrop='static' data-bs-keyboard='false')
             .modal-dialog.modal-dialog-centered
                 .modal-content
@@ -32,8 +32,8 @@ html(lang='es')
                             .col-12.text-center.mb-4
                                 p.font-17.fw-bold#deleteTitle
                             .col-12.text-center
-                                button.btn.text-white.btn-cancel.font-16.me-3.color-blue(data-bs-dismiss='modal') Cancelar
-                                button.btn.text-white.btn-style.font-16.bg-blue#btnDelete(data-bs-dismiss='modal') Eliminar
+                                button.btn.text-white.btn-cancel.font-16.me-3.color-green(data-bs-dismiss='modal') Cancelar
+                                button.btn.text-white.btn-style.font-16.bg-green#btnDelete(data-bs-dismiss='modal') Eliminar
         script(src='../jquery/code.jquery.com_jquery-3.7.0.slim.min.js')
         script(src='../fullcalendar-6.1.8/index.global.js')
         script(src='../bootstrap-5.3.0/js/bootstrap.bundle.min.js')

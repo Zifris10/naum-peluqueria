@@ -2,13 +2,13 @@
     height: 70px !important;
 }
 .bg-row {
-    background: #ECF3FE !important;
+    background: #e8f5e9 !important;
 }
-.bg-blue {
-    background-color: #4687F9 !important;
+.bg-green {
+    background-color: #426727 !important;
 }
-.color-blue {
-    color: #4687F9 !important;
+.color-green {
+    color: #426727 !important;
 }
 .cursor-pointer {
     cursor: pointer;
@@ -19,16 +19,16 @@
     border-radius: 15px !important;
 }
 .btn-style:hover {
-    background-color: #4687F9 !important;
+    background-color: #426727 !important;
 }
 .btn-cancel {
     height: 60px !important;
     width: 200px;
     border-radius: 15px !important;
-    border: 1px solid #4687F9;
+    border: 1px solid #426727;
 }
 .btn-cancel:hover {
-    border: 1px solid #4687F9;
+    border: 1px solid #426727;
 }
 .btn-delete {
     height: 60px !important;
@@ -51,7 +51,7 @@
     border-radius: 20px !important;
 }
 .form-select:focus, .form-control:focus {
-    border: 2px solid #4687F9;
+    border: 2px solid #426727;
     box-shadow: none;
 }
 .font-16 {
